@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "preinstall": "npm install ng serve",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
