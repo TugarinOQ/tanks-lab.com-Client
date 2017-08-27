@@ -1,0 +1,38 @@
+@import "./cursor";
+
+.checkbox {
+  margin: 10px auto 0;
+  //width: 165px;
+  position: relative;
+
+  .label {
+    padding-left: 30px;
+    cursor: cursor('pointer');
+
+    &:before {
+      content: '';
+      display: inline-block;
+      background: url('../../assets/imgs/checkbox/default.png') no-repeat center center;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 5px;
+      top: 2px;
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked + .label:after {
+      content: '';
+      display: inline-block;
+      background: url('../../assets/imgs/checkbox/check.png') no-repeat center center;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 5px;
+      top: 2px;
+    }
+  }
+}

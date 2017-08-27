@@ -1,0 +1,415 @@
+@import './cursor.pages';
+
+.container {
+  width: 1024px;
+}
+
+.title {
+  color: #ededdd;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin: 50px 0 0 0;
+}
+
+.header {
+  margin: 20px 0 0 0;
+
+  * {
+    display: block;
+    font-size: 14px;
+  }
+  .count {
+    float: left;
+  }
+  .amount {
+    float: right;
+    width: 120px;
+    text-align: center;
+  }
+}
+
+.filters {
+  border: 1px solid rgba(198, 197, 197, 0.1);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, .1);
+  padding: 10px;
+  color: #54514c;
+  font-size: 13px;
+
+  &:first-of-type {
+    margin-top: 25px;
+  }
+
+  .list_type {
+    padding: 5px 0 10px 0;
+  }
+
+  .list_level {
+    padding: 5px 0 10px 0;
+
+    checkbtn {
+      margin: 0 5px 5px;
+    }
+  }
+
+  checkbtn {
+    display: inline-block;
+    float: left;
+    margin: 0 5px;
+
+    &:first-of-type, &:nth-child(5n + 1) {
+      margin: 0 5px 0 0 !important;
+    }
+  }
+}
+
+.scrollbar-custom {
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -50vh;
+    top: 60px;
+    width: 39.5px;
+    background: url('../../../assets/imgs/hangar/screenfillbg.png') repeat center center;
+  }
+
+  @-moz-document url-prefix() {
+    &:before {
+      width: 17px !important;
+    }
+  }
+}
+
+.tank_list {
+  display: block;
+  margin: 10px 0 0 0;
+  overflow-y: auto;
+  position: absolute;
+  bottom: -50vh;
+  top: 50px;
+
+
+  @-moz-document url-prefix() {
+    & {
+      mix-blend-mode: multiply;
+    }
+  }
+
+  &.overflow {
+    height: 1000vh;
+  }
+
+  .tank {
+    margin: 2px 0 0 0;
+    border: 1px solid rgba(198, 197, 197, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    height: 105px;
+    position: relative;
+    cursor: cursor('pointer');
+
+    &.notSellToUser {
+      cursor: cursor('default');
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../../../assets/imgs/bgBox.png') repeat;
+        z-index: 20;
+      }
+
+      .tankAmount {
+        color: red;
+        z-index: 21;
+
+        &.availableSell {
+          color: lightgray;
+        }
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 160px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      //background: rgba(0, 0, 0, 0.05);
+    }
+
+    .nation {
+      position: relative;
+
+      &.ussr:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../../../assets/imgs/hangar/carousel/flags/ussr.png') no-repeat;
+        width: 160px;
+        height: 100px;
+        z-index: 0;
+      }
+    }
+
+    .levelInfo {
+      position: relative;
+    }
+
+    .tankImage {
+      width: 150px;
+      height: 105px;
+      margin: 0 0 0 -15px;
+      display: inline-block;
+      float: left;
+      position: relative;
+    }
+
+    .tankName {
+      margin: 10px 0 0 10px;
+      font-size: 15px;
+      color: #e0e0cc;
+      display: block;
+      float: left;
+      width: 520px;
+    }
+    .tankDesc {
+      color: #686857;
+      display: block;
+      float: left;
+      margin: 0 0 0 10px;
+    }
+    .tankAmount {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 130px;
+      text-align: center;
+      line-height: 105px;
+      font-size: 14px;
+      color: lightgray;
+    }
+  }
+}
+
+.scrollbar-custom > .tank_list::-webkit-scrollbar-track
+{
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.scrollbar-custom > .tank_list::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: transparent;
+}
+
+.scrollbar-custom > .tank_list::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #292721;
+}
+
+.tankBuyBlock {
+
+  .tankFullName {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  .tankNode {
+    position: relative;
+    margin: -5px -10px;
+
+    .levelInfo {
+      position: relative;
+    }
+
+    .nation {
+      position: relative;
+
+      &.ussr:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../../../assets/imgs/hangar/carousel/flags/ussr.png') no-repeat;
+        width: 160px;
+        height: 100px;
+        z-index: 0;
+      }
+    }
+
+    .tankImage {
+      width: 150px;
+      height: 105px;
+      margin: 0 0 0 -40px;
+      display: inline-block;
+      float: left;
+      position: relative;
+    }
+
+    .tankInfo {
+      position: relative;
+      margin: 0 0 0 165px;
+
+      .name {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 15px 0 0 0;
+        color: #d0d0ba;
+      }
+    }
+  }
+
+  .group {
+    &.tankBuyName {
+      margin: 0 0 9px;
+    }
+
+    .totalPrice {
+      .red {
+        color: red;
+      }
+    }
+
+    checkbox {
+      display: block;
+      margin: -8px 0;
+    }
+  }
+}
+
+.education {
+  padding: 10px 0 0 0;
+
+  .name {
+    font-size: 15px;
+    float: left;
+
+    &.title {
+      font-size: 15px !important;
+      text-shadow: none !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  .count {
+    color: #f5c36c;
+    font-size: 14px;
+    float: right;
+  }
+
+  &+.separator {
+    margin: -90px -9px 0;
+  }
+}
+
+.steps {
+  padding: 50px 0 0 0;
+}
+
+.checkbtn.academy {
+  position: relative;
+  margin: -15px 0 20px 0;
+
+  &.disabled:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 7px;
+    top: 0;
+    right: 7px;
+    border-radius: 2px;
+    bottom: 0;
+    background: url('../../../assets/imgs/academy/disable.png') repeat;
+    z-index: 10;
+  }
+
+  input {
+    display: none;
+  }
+
+  .academy {
+    background: transparent center center;
+    height: 84px;
+    cursor: cursor('pointer');
+    position: relative;
+
+    &.ussr:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: url('../../../assets/imgs/academy/flags/ussr.png') no-repeat center center;
+    }
+
+    &._100:after, &._75:after, &._50:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+    &._100:after {
+      background: url('../../../assets/imgs/academy/100.png') no-repeat center center;
+    }
+    &._75:after {
+      background: url('../../../assets/imgs/academy/75.png') no-repeat center center;
+    }
+    &._50:after {
+      background: url('../../../assets/imgs/academy/50.png') no-repeat center center;
+    }
+  }
+
+  &.active {
+    border: 15px solid transparent;
+    border-image: url('../../../assets/imgs/academy/hover.png') 14 round;
+    margin: -25px -5px;
+  }
+
+  label {
+    color: #eee4cb;
+    position: absolute;
+    top: 15px;
+    left: 110px;
+    font-size: 18px;
+    text-shadow: 0 5px 10px black;
+
+    .small {
+      display: block;
+      color: #b6b0a4;
+    }
+  }
+
+  .price {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    text-align: right;
+    text-shadow: 0 0 5px black;
+    color: #cacaca;
+  }
+}

@@ -1,0 +1,11 @@
+@function cursor($type) {
+  $cursor: '';
+  @if $type == 'default' {
+    $cursor: url('../../assets/cursor/default.cur'), default !important
+  } @else if $type == 'pointer' {
+    $cursor: url('../../assets/cursor/pointer.cur'), pointer !important
+  } @else {
+    $cursor: url('../../assets/cursor/text.cur'), text !important
+  }
+  @return $cursor;
+}

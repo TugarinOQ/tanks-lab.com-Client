@@ -1,0 +1,255 @@
+@import './cursor.pages';
+
+.hangar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  background: url('../../../assets/imgs/hangar/screenfillbg.png') repeat;
+  width: 100%;
+  height: 100vh;
+
+  &.shadow:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 54px;
+    right: 0;
+    bottom: 0;
+    //background: url('../../../assets/imgs/hangar/shadowView.png') repeat-y center center;
+    z-index: 0;
+  }
+
+  &.shadow > * {
+    z-index: 1;
+    position: relative;
+  }
+
+  &.ussr {
+    background: url('../../../assets/imgs/hangar/hangar-ussr.jpg') no-repeat 135px 30%;
+    background-size: 100%;
+  }
+}
+
+.header {
+  background: url('../../../assets/imgs/hangar/header/_bg.png') repeat-x;
+  width: 100%;
+  height: 54px;
+  z-index: 10;
+
+  .bg {
+    background: url('../../../assets/imgs/hangar/header/bg.png') no-repeat center center;
+    margin: 0 auto;
+    height: 88px;
+
+    .info {
+      position: absolute;
+      margin: 55px 5px;
+      z-index: 10;
+
+      .time {
+        font-weight: bold;
+      }
+    }
+
+    .menu {
+      margin: 0 auto;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+
+      ul {
+        li {
+          display: inline-block;
+          float: left;
+          margin: 0 10px;
+          transition: color .3s;
+          cursor: cursor('pointer');
+
+          &.disabled {
+            cursor: cursor('default');
+            color: #464641 !important;
+          }
+
+          &.light {
+            color: #e5a930;
+          }
+
+          &:not(.light):hover {
+            color: white;
+          }
+        }
+        a {
+          color: #b8b8a2;
+
+          &.active {
+            li {
+              cursor: cursor('default');
+              text-shadow: 0 0 10px white;
+
+              &:not(.light) {
+                color: white;
+              }
+
+              &.light {
+                text-shadow: 0 0 10px #e5a930;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .left {
+      float: left;
+
+      .ping {
+        display: inline-block;
+        width: 4px;
+        height: 52px;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &:before {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 2px;
+          height: 52px;
+        }
+
+        &.middle:before {
+          background: url('../../../assets/imgs/hangar/header/ping/middle.png');
+        }
+      }
+    }
+    .right {
+      float: right;
+    }
+
+    .topBtn {
+      display: inline-block;
+      font-size: 14px;
+      float: left;
+      position: relative;
+      padding: 8px 10px 10px;
+      text-align: center;
+      cursor: cursor('pointer');
+
+      &:hover {
+
+        .title {
+          color: white !important;
+        }
+
+        .hover {
+          &:before {
+            content: '';
+            display: inline-block;
+            background: url('../../../assets/imgs/hangar/header/topBtnHover.png') no-repeat 15% top;
+            width: 50%;
+            height: 51.5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+
+          &:after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            background: url('../../../assets/imgs/hangar/header/topBtnHover.png') no-repeat 85% top;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 51.5px;
+          }
+        }
+      }
+
+      &:not(.noSeperator):before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: url('../../../assets/imgs/hangar/header/seperator.png');
+        width: 2px;
+        height: 52px;
+      }
+
+      .count {
+        font-size: 13px;
+        color: white;
+
+        &:before {
+          content: '';
+          display: inline-block;
+          position: relative;
+          top: 2px;
+          left: -2px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      &.user {
+        padding: 8px 25px;
+
+        .name {
+          color: white;
+          font-weight: bold;
+          margin: 8px 0;
+        }
+      }
+
+      &.settings {
+
+        .icon {
+          display: inline-block;
+          background: url('../../../assets/imgs/hangar/header/settings.png') no-repeat center center;
+          width: 26px;
+          height: 26px;
+          margin: 5px 0 0 5px;
+        }
+      }
+
+      &.bons {
+        .count:before {
+          background: url('../../../assets/imgs/hangar/header/bons.png');
+        }
+      }
+      &.gold {
+        .count:before {
+          background: url('../../../assets/imgs/hangar/header/gold.png') no-repeat center center;
+        }
+      }
+      &.silver {
+        .count:before {
+          background: url('../../../assets/imgs/hangar/header/silver.png') no-repeat center center;
+        }
+      }
+      &.practice {
+        .count:before {
+          background: url('../../../assets/imgs/hangar/header/practice.png') no-repeat center center;
+        }
+      }
+
+      .title {
+        line-height: 10px;
+        color: #7a756d;
+      }
+    }
+  }
+}

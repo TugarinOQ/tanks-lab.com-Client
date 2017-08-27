@@ -1,0 +1,332 @@
+@import './cursor.pages';
+
+.tank__view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 85px;
+  bottom: 160px;
+  box-sizing: border-box;
+
+  &:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent 70%, #1c1c1e);
+}
+
+  .ussr {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+
+    .info {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      .name {
+        display: block;
+        float: left;
+        font-size: 23px;
+        margin: 0 0 0 5px;
+        color: white;
+        height: 30px;
+        line-height: 27px;
+      }
+
+      .level {
+        font-size: 15px;
+        width: 100%;
+        text-align: center;
+        margin: 0 0 0 -5px;
+      }
+    }
+
+    .improvements {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      width: 675px;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+
+      .status {
+        font-size: 19px;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: -1px -1px 0 #1a1a1a,
+                      1px -1px 0 #1a1a1a,
+                      -1px 1px 0 #1a1a1a,
+                      1px 1px 0 #1a1a1a,
+                      0 0 20px black;
+        margin: 0 0 15px 0;
+
+        &.red {
+          color: #ca2020;
+        }
+        &.green {
+          color: #527d16;
+        }
+      }
+
+      .buttons {
+        position: relative;
+        height: 40px;
+
+        .small-btn {
+          left: 50%;
+          position: absolute;
+          transform: translateX(-50%);
+        }
+      }
+
+      .listImprovements {
+
+        &>div {
+          display: inline-block;
+          margin: 0 10px 0 0;
+
+          &:last-of-type {
+            margin: 0;
+          }
+        }
+
+        .cell {
+          display: inline-block;
+          background: url('../../../assets/imgs/hangar/improvements/cell.png');
+          width: 47px;
+          height: 47px;
+          position: relative;
+          margin: 0 5px 0 0;
+
+          &.equipmentAdd:before, &.boostAdd:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../../../assets/imgs/hangar/improvements/equipment.png') no-repeat center center;
+          }
+
+          &.instructionAdd:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../../../assets/imgs/hangar/improvements/instruction.png') no-repeat center center;
+          }
+        }
+
+        .modules {
+          .guns {
+            background: url('../../../assets/imgs/hangar/improvements/gun.png') no-repeat center center;
+            background-size: cover;
+            width: 45px;
+            height: 45px;
+          }
+          .towers {
+            background: url('../../../assets/imgs/hangar/improvements/tower.png') no-repeat center center;
+            background-size: cover;
+            width: 47px;
+            height: 47px;
+          }
+          .engines {
+            background: url('../../../assets/imgs/hangar/improvements/engine.png') no-repeat center center;
+            background-size: cover;
+            width: 45px;
+            height: 45px;
+          }
+          .tracks {
+            background: url('../../../assets/imgs/hangar/improvements/track.png') no-repeat center center;
+            background-size: cover;
+            width: 45px;
+            height: 45px;
+          }
+          .radios {
+            background: url('../../../assets/imgs/hangar/improvements/radio.png') no-repeat center center;
+            background-size: cover;
+            width: 45px;
+            height: 45px;
+          }
+
+          .list {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.carousel {
+  background: #0f0f0f;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+
+  ul {
+    padding: 12px 20px;
+    width: 10000px;
+
+    li.item_carousel {
+      position: relative;
+      display: inline-block;
+      margin: 0 5px;
+      background: url('../../../assets/imgs/hangar/carousel/back.png') no-repeat center center;
+      width: 162px;
+      height: 102px;
+      border: 3px solid transparent;
+      border-image: url('../../../assets/imgs/hangar/carousel/defaultBorder.png') 3 round;
+      transition: all .3s;
+
+      &.tank, &.buyTank, &.buySeats {
+        cursor: cursor('pointer');
+      }
+
+      &.active {
+        border-image: url('../../../assets/imgs/hangar/carousel/activeBorder.png') 3 round;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        transition: all .3s;
+      }
+
+      &:not(.empty):hover:after {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      &.ussr:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../../../assets/imgs/hangar/carousel/flags/ussr.png') no-repeat center center;
+      }
+
+      &.buyTank:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../../../assets/imgs/hangar/carousel/buy_tank.png') no-repeat center center;
+        opacity: 0.7;
+      }
+      &.buySeats:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../../../assets/imgs/hangar/carousel/buy_slot.png') no-repeat center center;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .levelInfo {
+    position: relative;
+  }
+
+  .tankImage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .tankName {
+    font-size: 15px;
+    color: #b8b8a2;
+    text-shadow: 0 0 10px #b8b8a2;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    text-align: right;
+  }
+
+  .countBuildingTank {
+    font-size: 12px;
+    color: #b8b8a2;
+    text-shadow: 0 0 10px #b8b8a2;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    text-align: right;
+  }
+
+  a.redirectTo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .info {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .title, .subtitle {
+      text-align: center;
+      color: #b8b8a2;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #b8b8a2;
+    }
+
+    .price {
+      position: absolute;
+      top: -35px;
+      right: 10px;
+
+      i {
+        font-style: normal;
+
+        &.silver:after {
+          content: '';
+          background: url('../../../assets/imgs/hangar/header/silver.png') no-repeat center 2px;
+          width: 18px;
+          height: 15px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

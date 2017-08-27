@@ -1,0 +1,14 @@
+<div class="research__view">
+    <div class="title">Техника СССР</div>
+
+    <div class="grid__view">
+        <div class="levels"></div>
+
+        <div class="rows">
+            <div class="row r{{row_idx + 1}}" *ngFor="let row of grid.grid.rows; let row_idx = index">
+                <div class="column c{{column_idx + 1}}" *ngFor="let column of grid.grid.columns; let column_idx = index">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

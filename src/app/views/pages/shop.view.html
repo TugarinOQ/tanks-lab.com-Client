@@ -1,0 +1,173 @@
+<div class="title">Техника</div>
+<div class="container">
+  <div class="row">
+
+    <div class="col-3">
+      <div class="filters">
+        <div>
+          <div class="subtitle">Тип техники:</div>
+          <div class="list_type clearfix">
+
+            <checkbtn *ngFor="let type of types" [classed]="type" (onChecked)="checkedType(type, $event)"></checkbtn>
+
+          </div>
+        </div>
+        <div>
+          <div class="subtitle">Уровень техники:</div>
+
+          <div class="list_level clearfix">
+
+            <checkbtn *ngFor="let level of levels" [classed]="level" (onChecked)="checkedLevel(level, $event)"></checkbtn>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="header clearfix">
+        <div class="count">Найдено: {{tanks.length}}</div>
+        <div class="amount">Стоимость</div>
+      </div>
+
+      <div class="scrollbar-custom">
+        <div class="tank_list">
+          <div class="overflow">
+
+            <div class="tank" (click)="preBuyTank(tank._id, tank.visibleToSell);" [ngClass]="{'notSellToUser': tank.visibleToSell}" *ngFor="let tank of tanks">
+              <div class="nation {{tank.nation}}"></div>
+              <div class="levelInfo">
+                <div class="type {{tank.type}}"></div>
+                <div class="level {{tank.level}}"></div>
+              </div>
+              <div class="tankImage {{tank.name}}_resized"></div>
+              <div class="tankName">{{fullnameOfTypeTank(tank.type)}} {{tank.displayName}}</div>
+              <div class="tankDesc">Доход от: <span class="ico goldColor">{{tank.sell}}</span><i class="ico gold"></i>/ мес</div>
+              <div class="tankAmount" [ngClass]="{'availableSell': tank.availableSell}">{{normalPrice(tank.price)}}<i class="ico silver"></i></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div id="buyTankBox" style="display: none">
+  <div class="tankBuyBlock">
+
+    <div class="tankNode">
+      <div class="nation"></div>
+      <div class="levelInfo">
+        <div class="type"></div>
+        <div class="level"></div>
+      </div>
+      <div class="tankImage"></div>
+
+      <div class="tankInfo">
+        <div class="name"></div>
+        <div class="type_info"></div>
+        <div class="level_info"></div>
+      </div>
+
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="priceList">
+      <div class="group tankBuyName">
+        <div class="name title"></div>
+        <span class="outgrowth"></span>
+        <div class="price">
+          <i class="ico silver"></i>
+        </div>
+      </div>
+      <div class="group">
+        <div class="name">
+          <checkbox [id]="'additionSlot'" [title]="'Купить дополнительный слот'"></checkbox>
+        </div>
+        <span class="outgrowth"></span>
+        <div class="price">
+          {{price.slot}}
+          <i class="ico silver"></i>
+        </div>
+      </div>
+      <div class="group">
+        <div class="name">
+          <checkbox [id]="'momentResearch'" [title]="'Моментальное изучение танка'"></checkbox>
+        </div>
+        <span class="outgrowth"></span>
+        <div class="price">
+          {{price.slot}}
+          <i class="ico silver"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="education clearfix">
+      <div class="name title">
+        Подготовка экипажа:
+      </div>
+      <div class="count">
+        Членов экипажа: <span></span>
+      </div>
+
+      <div class="steps">
+
+        <div class="checkbtn academy disabled">
+          <input type="checkbox" id="educa100" name="educa100" #educa100>
+          <div class="checked">
+            <div class="academy _100"></div>
+            <label for="educa100">
+              Танковая академия
+              <span class="small">Обучение до уровня:</span>
+            </label>
+            <span class="price">
+                1,000
+                <i class="ico silver"></i>
+              </span>
+          </div>
+        </div>
+        <div class="checkbtn academy disabled">
+          <input type="checkbox" id="educa75" name="educa75" #educa75>
+          <div class="checked">
+            <div class="academy _75"></div>
+            <label for="educa75">
+              Полковая школа
+              <span class="small">Обучение до уровня:</span>
+            </label>
+            <span class="price">
+                500
+                <i class="ico silver"></i>
+              </span>
+          </div>
+        </div>
+        <div class="checkbtn academy active">
+          <input type="checkbox" id="educa50" name="educa50" #educa50>
+          <div class="checked">
+            <div class="academy _50"></div>
+            <label for="educa50">
+              Ускоренные курсы
+              <span class="small">Обучение до уровня:</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="group tankBuyName">
+      <div class="name title">Итого</div>
+      <span class="outgrowth"></span>
+      <div class="totalPrice">
+        <span></span>
+        <i class="ico silver"></i>
+      </div>
+    </div>
+
+  </div>
+</div>

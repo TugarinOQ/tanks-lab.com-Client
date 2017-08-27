@@ -1,0 +1,15 @@
+.type {
+  display: inline-block;
+  float: left;
+
+  &.lt {
+    background: url('../../assets/imgs/hangar/types/lt.png') no-repeat center center;
+    width: 17px;
+    height: 19px;
+  }
+  &.lt.big {
+    background: url('../../assets/imgs/hangar/types/big/lt.png') no-repeat center center;
+    width: 27px;
+    height: 30px;
+  }
+}

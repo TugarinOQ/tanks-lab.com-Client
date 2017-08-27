@@ -1,0 +1,101 @@
+<div class="tank__view">
+    <div *ngIf="showTank === true" class="{{selectedTank.nation}} {{selectedTank.name}}">
+        <div class="info">
+            <div class="type big {{selectedTank.type}}"></div>
+            <div class="name">
+            {{selectedTank.displayName}}
+            </div>
+            <div class="level">{{selectedTank.level}} уровень</div>
+        </div>
+
+        <div class="improvements">
+            <div class="status red" *ngIf="!researchedTank">
+                Изучение танка {{researchTime}}
+            </div>
+
+            <div class="status green" *ngIf="researchedTank">
+                В процессе производства...
+            </div>
+
+            <div class="buttons clearfix">
+                <div class="small-btn long action" [ngClass]="{ disabled: !researchedTank }">
+                    <div class="text">Продать танки за <span class="ico goldColor">0.00 <i class="ico gold"></i></span></div>
+                </div>
+            </div>
+
+            <div class="listImprovements">
+                <div class="modules">
+
+                    <div class="cell" *ngFor="let module of tankImprovements">
+                        <div class="sel {{module}}">
+                            <div class="level"></div>
+                        </div>
+
+                        <div class="list {{module}}">
+                            <div class="item"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="equipment">
+
+                    <div class="cell equipmentAdd"></div>
+                    <div class="cell equipmentAdd"></div>
+                    <div class="cell equipmentAdd"></div>
+
+                </div>
+                <div class="boosts">
+
+                    <div class="cell boostAdd"></div>
+                    <div class="cell boostAdd"></div>
+                    <div class="cell boostAdd"></div>
+
+                </div>
+                <div class="instruction">
+
+                    <div class="cell instructionAdd"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="carousel">
+    <ul>
+        <li class="item_carousel tank {{_tank.nation}}" (click)="selTank(_tank)" [ngClass]="{'active': _tank == selectedTank}" *ngFor="let _tank of tanks">
+            <div class="tankImage {{_tank.name}}_resized"></div>
+            <div class="levelInfo">
+                <div class="type {{_tank.type}}"></div>
+                <div class="level {{_tank.level}}"></div>
+            </div>
+            <div class="tankName">{{_tank.displayName}}</div>
+            <div class="countBuildingTank">x{{_tank.count || 1}}</div>
+        </li>
+
+        <li class="item_carousel buyTank" *ngIf="showTank === true">
+            <a routerLink="/game/shop" class="redirectTo">
+                <div class="info">
+                    <div class="title">
+                        Купить танк
+                    </div>
+                    <div class="subtitle">
+                        Свободных мест: {{freeSeats}}
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="item_carousel buySeats" (click)="preBuySlot()" *ngIf="showTank === true">
+            <div class="info">
+                <div class="title">
+                    Купить слот
+                </div>
+                <div class="price">
+                    <i class="silver">{{price.slot}}</i>
+                </div>
+            </div>
+        </li>
+
+        <li class="item_carousel empty" *ngFor="let emptySeats of countScreenSeats"></li>
+    </ul>
+</div>

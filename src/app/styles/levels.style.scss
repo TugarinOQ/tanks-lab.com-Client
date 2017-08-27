@@ -1,0 +1,55 @@
+.level {
+  display: inline-block;
+  float: left;
+
+  &.I {
+    background: url('../../assets/imgs/hangar/levels/1.png') no-repeat center center;
+    width: 24px;
+    height: 19px;
+  }
+  &.II {
+    background: url('../../assets/imgs/hangar/levels/2.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.III {
+    background: url('../../assets/imgs/hangar/levels/3.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.IV {
+    background: url('../../assets/imgs/hangar/levels/4.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.V {
+    background: url('../../assets/imgs/hangar/levels/5.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.VI {
+    background: url('../../assets/imgs/hangar/levels/6.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.VII {
+    background: url('../../assets/imgs/hangar/levels/7.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.VIII {
+    background: url('../../assets/imgs/hangar/levels/8.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.IX {
+    background: url('../../assets/imgs/hangar/levels/9.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+  &.X {
+    background: url('../../assets/imgs/hangar/levels/10.png') no-repeat center center;
+    width: 24px;
+    height: 17px;
+  }
+}

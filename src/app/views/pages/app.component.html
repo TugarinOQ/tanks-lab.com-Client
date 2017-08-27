@@ -1,0 +1,58 @@
+<div class="page-wrapper" *ngIf="!isCabinetPage">
+  <div class="cm-holder">
+    <div class="cm-content">
+      <div class="cm-menu user">
+        <a routerLink="/auth" class="cm-link cm-register">Войти</a>
+        <span class="cm-menu_text-or">или</span>
+        <a routerLink="/reg" class="cm-link cm-register">создать аккаунт</a>
+      </div>
+      <a class="cm-singletons cm-singletons__logo" routerLink="/">
+        <span class="cm-singletons_ico-wrapper">
+          <span class="cm-singletons_ico-holder">
+            <div class="cm-singletons_ico"></div>
+          </span>
+        </span>
+      </a>
+      <a class="cm-singletons cm-singletons__main" style="color: #ffffff" href="{{item.href}}" *ngFor="let item of menuitem">
+        <span class="cm-singletons_text">{{item.text}}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="bg" [ngClass]="{'big': isAppView}"></div>
+    <div class="sparkles"></div>
+    <section class="promo">
+      <div class="promo-inner">
+        <div class="promo-descr" [ngClass]="{'big': isAppView}">
+          <a routerLink="/" class="promo_logo" [ngClass]="{'big': isAppView}" tabindex="-1">Экономическая игра Tanks-Lab.com</a>
+          <div class="promo_content" *ngIf="isHomePage">
+            <p class="promo_info">Tanks-Lab.com - это увлекательный игровой симулятор с возможностью заработка и вывода реальных денег! Все что от Вас требуется это зарегистрироваться в нашем проекте, развивать свое танкостроение и получать стабильный доход!</p>
+            <a routerLink="/reg" class="big-button">
+              <span class="big-button_text">
+                НАЧАТЬ ИГРАТЬ
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="footer">
+    <div class="footer_bottom">
+      <div class="footer_bottom-wrapper">
+        <div class="footer_copyright">
+          <div class="footer_copyright-text">
+            © 2017 Tanks-Lab.com 18+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid no_padding font" *ngIf="isCabinetPage">
+  <router-outlet></router-outlet>
+</div>

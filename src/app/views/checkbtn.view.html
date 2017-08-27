@@ -1,0 +1,7 @@
+<div class="checkbtn">
+    <input type="checkbox" id="{{id}}" name="{{id}}" #checkbox>
+    <div class="checked">
+        <div class="{{classed}}"></div>
+        <label (click)="click(checkbox.checked)" for="{{id}}"></label>
+    </div>
+</div>

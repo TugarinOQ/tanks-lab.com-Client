@@ -1,0 +1,60 @@
+<div class="hangar" [ngClass]="{'ussr': section === 'hangar'}">
+  <div class="header">
+    <div class="bg">
+      <div class="info">
+        <div class="time">
+          Время: <span>{{time}}</span>
+        </div>
+      </div>
+
+      <div class="left">
+        <div class="ping middle"></div>
+        <div class="topBtn settings noSeperator">
+          <div class="hover"></div>
+          <div class="icon"></div>
+        </div>
+        <div class="topBtn user">
+          <div class="hover"></div>
+          <div class="name">UserName</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="topBtn bons">
+          <div class="hover"></div>
+          <div class="count">0</div>
+          <div class="title">Заслужить</div>
+        </div>
+        <div class="topBtn gold">
+          <div class="hover"></div>
+          <div class="count">0</div>
+          <div class="title">Вывести</div>
+        </div>
+        <div class="topBtn silver" (click)="upBalance()">
+          <div class="hover"></div>
+          <div class="count">0</div>
+          <div class="title">Пополнить</div>
+        </div>
+        <div class="topBtn practice">
+          <div class="hover"></div>
+          <div class="count">0</div>
+          <div class="title">Перевести</div>
+        </div>
+      </div>
+
+      <div class="menu">
+        <ul>
+          <a routerLink="/game/hangar" routerLinkActive="active"><li class="item light">Ангар</li></a>
+          <a routerLink="/game/shop" routerLinkActive="active"><li class="item">Магазин</li></a>
+          <li class="item disabled">Задачи</li>
+          <a routerLink="/game/research" routerLinkActive="active"><li class="item">Исследования</li></a>
+          <li class="item disabled">Аукцион</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hangar *ngIf="section === 'hangar'"></hangar>
+  <shop *ngIf="section === 'shop'"></shop>
+  <research *ngIf="section === 'research'"></research>
+
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="block">
+      <div class="groupClass">
+        <label for="email">Электронная почта:</label>
+        <div class="input"><input #email id="email" type="email"></div>
+        <div class="link"><a routerLink="/reg">Создать аккаунт</a></div>
+      </div>
+      <div class="groupClass">
+        <label for="pass">Пароль:</label>
+        <div class="input"><input #password id="pass" type="password"></div>
+        <div class="link"><a routerLink="/forgot">Не удается войти?</a></div>
+      </div>
+      <div class="groupClass checkbox">
+        <checkbox [id]="'agree'" [title]="'Я принимаю правила сервиса'" (onChecked)="agreeEvent($event)"></checkbox>
+      </div>
+      <div class="groupClass">
+        <re-captcha (captchaResponse)="$event && auth($event)" size="invisible" site_key="6Lcu5B8UAAAAAA2xO7ybnfeldqWCi1JJJBfq32Go"></re-captcha>
+
+        <div class="big-button_red disabled" (click)="preauth(email, password);">
+          <div class="label">Войти!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

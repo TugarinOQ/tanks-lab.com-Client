@@ -1,0 +1,125 @@
+@import './cursor';
+
+.checkbtn {
+  background: url('../../assets/imgs/checkbutton/default.png') no-repeat center center;
+  background-size: 100%;
+  width: 31px;
+  height: 22px;
+
+  input {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    width: 31px;
+    height: 22px;
+    cursor: cursor('pointer');
+  }
+
+  .checked {
+    position: relative;
+  }
+
+  input:checked + .checked {
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: url('../../assets/imgs/checkbutton/check.png') no-repeat center center, url('../../assets/imgs/checkbutton/border.png') no-repeat center 0;
+      width: 31px;
+      height: 31px;
+    }
+  }
+
+  .type {
+    width: 17px;
+    height: 20px;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    &.lt {
+      background: url('../../assets/imgs/hangar/types/lt.png') no-repeat center center;
+      background-size: 100%;
+      margin: -1px auto;
+    }
+    &.mt {
+      background: url('../../assets/imgs/hangar/types/mt.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.ht {
+      background: url('../../assets/imgs/hangar/types/ht.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.at-spg {
+      background: url('../../assets/imgs/hangar/types/at-spg.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.spg {
+      background: url('../../assets/imgs/hangar/types/spg.png') no-repeat center center;
+      background-size: 100%;
+    }
+  }
+
+  .level {
+    width: 24px;
+    height: 20px;
+    margin: -1px 24%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    &.I {
+      background: url('../../assets/imgs/hangar/levels/1.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.II {
+      background: url('../../assets/imgs/hangar/levels/2.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.III {
+      background: url('../../assets/imgs/hangar/levels/3.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.IV {
+      background: url('../../assets/imgs/hangar/levels/4.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.V {
+      background: url('../../assets/imgs/hangar/levels/5.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.VI {
+      background: url('../../assets/imgs/hangar/levels/6.png') no-repeat center center;
+      background-size: 100%;
+      margin-left: 20%;
+    }
+    &.VII {
+      background: url('../../assets/imgs/hangar/levels/7.png') no-repeat center center;
+      background-size: 100%;
+      margin-left: 15%;
+    }
+    &.VIII {
+      background: url('../../assets/imgs/hangar/levels/8.png') no-repeat center center;
+      background-size: 100%;
+      margin-left: 10%;
+    }
+    &.IX {
+      background: url('../../assets/imgs/hangar/levels/9.png') no-repeat center center;
+      background-size: 100%;
+    }
+    &.X {
+      background: url('../../assets/imgs/hangar/levels/10.png') no-repeat center center;
+      background-size: 100%;
+    }
+  }
+}
