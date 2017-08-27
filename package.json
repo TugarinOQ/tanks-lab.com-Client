@@ -1,10 +1,10 @@
 {
   "name": "tankslab_client",
-  "version": "0.0.0",
+  "version": "0.0.1 ~ alpha",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 8080",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
