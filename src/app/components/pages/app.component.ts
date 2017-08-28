@@ -66,7 +66,7 @@ export class AppComponent {
   navigationInterceptor(event) {
     if (event instanceof NavigationEnd) {
       this.isHomePage = (location.hash === '#/');
-      const href = location.hash.split('#')[1];
+      const href = location.hash.split('#')[1].split('/')[1];
       this.isAppView = ( href === '/auth' || href === '/reg' || href === '/game' || href === '/forgot' );
       this.isCabinetPage = ( href === '/game' );
     }

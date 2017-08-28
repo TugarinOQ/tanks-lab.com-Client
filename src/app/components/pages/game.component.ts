@@ -48,8 +48,6 @@ export class gameComponent {
 
       (url.length === 1) ? this.router.navigateByUrl('/#/game/hangar') : this.section = url[1].path;
 
-      console.log(url);
-
     });
 
     setTimeout(() => this.getLocalData(), 0);
