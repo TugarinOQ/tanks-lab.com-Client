@@ -112,10 +112,7 @@
     ],
     "semicolon": [true, "always"],
     "variable-name": [
-      true,
-      "check-format",
-      "allow-leading-underscore",
-      "ban-keywords"
+      false
     ],
     "whitespace": [
       true,
