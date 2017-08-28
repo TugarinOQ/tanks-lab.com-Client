@@ -28,7 +28,7 @@ export class authComponent {
 
     if (localStorage.getItem('token')) {
 
-      location.href = '/game/hangar';
+      location.href = '/#/game/hangar';
     }
 
     this.titleService.setTitle( 'Авторизация' + config.genTitle() );
@@ -77,7 +77,7 @@ export class authComponent {
 
           this.app.isLogged = true;
 
-          this.router.navigateByUrl('/game/hangar');
+          this.router.navigateByUrl('/#/game/hangar');
         });
   }
 }
