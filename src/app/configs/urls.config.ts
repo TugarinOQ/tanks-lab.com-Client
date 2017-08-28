@@ -1,6 +1,5 @@
 export const urls__config = {
-  host: 'http://env-8373206.mircloud.host',
-  hostLocal: 'http://localhost:8081',
+  hostLocal: 'http://10.2.13.242:8080',
   users: {
     auth: '/users/login',
     reg: '/users/register',
