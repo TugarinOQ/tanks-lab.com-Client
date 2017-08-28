@@ -58,26 +58,26 @@ export class authComponent {
 
     const body = Object.assign({captcha: captchaResponse}, this.propsAuth);
 
-    this.http.post(urls__config.hostLocal + urls__config.users.auth, body, [  ])
-      .map((res: Response) => res.json())
-      .subscribe((res) => {
+    this.http.post(urls__config.hostLocal + urls__config.users.auth, body)
+        .map((res: Response) => res.json())
+        .subscribe((res) => {
 
-        alertBox.loading.hide();
+          alertBox.loading.hide();
 
-        if (res.error) {
+          if (res.error) {
 
-          alertBox.show({ title: 'Ошибка', html: res.error });
+            alertBox.show({ title: 'Ошибка', html: res.error });
 
-          this.captcha.reset();
+            this.captcha.reset();
 
-          return;
-        }
+            return;
+          }
 
-        localStorage.setItem('token', res.token);
+          localStorage.setItem('token', res.token);
 
-        this.app.isLogged = true;
+          this.app.isLogged = true;
 
-        this.router.navigateByUrl('/game/hangar');
-      });
+          this.router.navigateByUrl('/game/hangar');
+        });
   }
 }

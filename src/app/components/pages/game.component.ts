@@ -77,7 +77,7 @@ export class gameComponent {
 
       req.get(this.http, {
           url: urls__config.hostLocal + urls__config.token.valid,
-          err__cb: (err) => {
+          err__cb: () => {
 
               localStorage.removeItem('token');
               location.href = '/auth';

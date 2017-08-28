@@ -21,6 +21,7 @@
   flex-direction: column;
   position: relative;
   width: 100%;
+  overflow: hidden;
   background-repeat: no-repeat;
   background-position: 50% 0;
   -webkit-user-select: none !important;
@@ -708,6 +709,7 @@ hr.dotted {
     width: 100%;
     font-size: 12px;
     height: 20px;
+    line-height: 20px;
     color: #b8b8a2;
     cursor: cursor('text');
     z-index: 2;

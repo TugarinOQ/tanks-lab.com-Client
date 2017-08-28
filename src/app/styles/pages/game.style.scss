@@ -44,6 +44,7 @@
     background: url('../../../assets/imgs/hangar/header/bg.png') no-repeat center center;
     margin: 0 auto;
     height: 88px;
+    z-index: 10;
 
     .info {
       position: absolute;
@@ -61,10 +62,9 @@
       font-weight: bold;
       text-transform: uppercase;
       position: absolute;
-      top: 60px;
+      top: 44px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 10;
 
       ul {
         li {

@@ -6,6 +6,106 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    @font-face {
+      font-family: "robotocondensed";
+      src: url('./assets/fonts/robotocondensed.eot');
+      src: url('./assets/fonts/robotocondensed.eot?#iefix') format("embedded-opentype"), url('./assets/fonts/robotocondensed.woff') format("woff"), url('./assets/fonts/robotocondensed.ttf') format("truetype");
+      font-weight: 400
+    }
+
+    @font-face {
+      font-family: "robotocondensed";
+      src: url('./assets/fonts/robotocondensed-bold.eot');
+      src: url('./assets/fonts/robotocondensed-bold.eot?#iefix') format("embedded-opentype"), url('./assets/fonts/robotocondensed-bold.woff') format("woff"), url('./assets/fonts/robotocondensed-bold.ttf') format("truetype");
+      font-weight: 700
+    }
+
+    @font-face {
+      font-family: "roboto";
+      src: url('./assets/fonts/roboto.eot');
+      src: url('./assets/fonts/roboto.eot?#iefix') format("embedded-opentype"), url('./assets/fonts/roboto.woff') format("woff"), url('./assets/fonts/roboto.ttf') format("truetype");
+      font-weight: 400
+    }
+
+    @font-face {
+      font-family: "roboto";
+      src: url('./assets/fonts/roboto-bold.eot');
+      src: url('./assets/fonts/roboto-bold.eot?#iefix') format("embedded-opentype"), url('./assets/fonts/roboto-bold.woff') format("woff"), url('./assets/fonts/roboto-bold.ttf') format("truetype");
+      font-weight: 700
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      font-size: 100%;
+      vertical-align: baseline;
+      background: 0 0;
+    }
+    html {
+      height: 100%;
+    }
+    html.noscroll, html.noscroll > body {
+      overflow-y: hidden;
+    }
+
+    body {
+      font-family: "robotocondensed", "Arial Narrow", Arial, sans-serif;
+    }
+    body, td {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: 0 0;
+    }
+    body {
+      vertical-align: baseline;
+      background: #1c1c1e;
+      line-height: 20px;
+      color: #b8b8a2;
+      height: 100%;
+      min-width: 1024px;
+      position: relative;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 12px;
+      cursor: url('./assets/cursor/default.cur'), auto !important;
+    }
+
+    a {
+      text-decoration: none;
+      color: #f25322;
+      transition: color .15s ease-out;
+      cursor: url('./assets/cursor/pointer.cur'), pointer !important;
+    }
+    a:hover {
+      color: #ff7e00 !important;
+    }
+
+    ul, li {
+      list-style: none;
+    }
+
+    .blurBack, .blurBack > body {
+      overflow: hidden;
+    }
+
+    *, *:hover, *:active, *:focus, *::selection {
+      -webkit-touch-callout: none !important;
+      -webkit-user-select: none !important;
+      -khtml-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      outline: 0 !important;
+    }
+  </style>
+  <link href="/assets/css/bootstrap-grid.min.css" type="text/css" rel="stylesheet">
+  <%= webpackConfig.htmlElements.headTags %>
 </head>
 <body class="dc">
   <app-root></app-root>

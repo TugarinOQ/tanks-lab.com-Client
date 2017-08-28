@@ -57,7 +57,7 @@ export class regComponent {
 
     const body = Object.assign({captcha: captchaResponse}, this.propsReg);
 
-    this.http.post(urls__config.hostLocal + urls__config.users.reg, body, [  ])
+    this.http.post(urls__config.hostLocal + urls__config.users.reg, body)
       .map((res: Response) => res.json())
       .subscribe((res) => {
 

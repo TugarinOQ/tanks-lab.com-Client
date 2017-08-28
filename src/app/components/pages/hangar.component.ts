@@ -68,7 +68,7 @@ export class hangarComponent {
 
           this.tanks = this.getTank(res.tanks);
 
-          this.countScreenSeats = new Array(parseInt((window.screen.width / 165).toString()) - Object.keys(res.tanks).length - 2);
+          this.countScreenSeats = new Array( parseInt( (window.screen.width / 165).toString() ) - Object.keys(res.tanks).length - 2);
           this.freeSeats = res.countSeats - Object.keys(res.tanks).length;
           this.countSeats = res.countSeats;
 

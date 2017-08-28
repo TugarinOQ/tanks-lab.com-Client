@@ -14,9 +14,12 @@
   padding: 150px 0 0 0;
 
   .groupClass {
+    margin: 0 0 10px 0;
+
     label:not(.label) {
       text-align: right;
       width: 140px;
+      display: inline-block;
     }
 
     .link {

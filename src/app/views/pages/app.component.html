@@ -1,5 +1,5 @@
-<div class="page-wrapper" *ngIf="!isCabinetPage">
-  <div class="cm-holder">
+<div class="" [ngClass]="{'page-wrapper': !isCabinetPage, 'container-fluid no_padding font': isCabinetPage}">
+  <div class="cm-holder" *ngIf="!isCabinetPage">
     <div class="cm-content">
       <div class="cm-menu user">
         <a routerLink="/auth" class="cm-link cm-register">Войти</a>
@@ -20,9 +20,9 @@
   </div>
 
   <div class="content-wrapper">
-    <div class="bg" [ngClass]="{'big': isAppView}"></div>
-    <div class="sparkles"></div>
-    <section class="promo">
+    <div class="bg" [ngClass]="{'big': isAppView}" *ngIf="!isCabinetPage"></div>
+    <div class="sparkles" *ngIf="!isCabinetPage"></div>
+    <section class="promo" *ngIf="!isCabinetPage">
       <div class="promo-inner">
         <div class="promo-descr" [ngClass]="{'big': isAppView}">
           <a routerLink="/" class="promo_logo" [ngClass]="{'big': isAppView}" tabindex="-1">Экономическая игра Tanks-Lab.com</a>
@@ -40,7 +40,7 @@
     <router-outlet></router-outlet>
   </div>
 
-  <div class="footer">
+  <div class="footer" *ngIf="!isCabinetPage">
     <div class="footer_bottom">
       <div class="footer_bottom-wrapper">
         <div class="footer_copyright">
@@ -51,8 +51,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="container-fluid no_padding font" *ngIf="isCabinetPage">
-  <router-outlet></router-outlet>
 </div>
