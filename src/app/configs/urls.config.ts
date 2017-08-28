@@ -1,5 +1,5 @@
 export const urls__config = {
-  hostLocal: 'http://10.2.13.242:8080',
+  hostLocal: 'https://10.2.13.242:8080',
   // hostLocal: 'http://localhost:8080',
   users: {
     auth: '/users/login',
