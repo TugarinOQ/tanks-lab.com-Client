@@ -42,7 +42,7 @@ import { checkboxComponent } from './components/checkbox.component';
     BrowserModule,
     HttpModule,
     ReCaptchaModule,
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, useHash: true })
   ],
   providers: [
     AuthGuard

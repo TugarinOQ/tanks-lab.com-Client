@@ -46,7 +46,10 @@ export class gameComponent {
 
     this.route.url.subscribe(url => {
 
-      (url.length === 1) ? this.router.navigateByUrl('/game/hangar') : this.section = url[1].path;
+      (url.length === 1) ? this.router.navigateByUrl('/#/game/hangar') : this.section = url[1].path;
+
+      console.log(url);
+
     });
 
     setTimeout(() => this.getLocalData(), 0);
@@ -80,7 +83,7 @@ export class gameComponent {
           err__cb: () => {
 
               localStorage.removeItem('token');
-              location.href = '/auth';
+              location.href = '/#/auth';
           },
           success__cb: (res) => {
 

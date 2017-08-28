@@ -65,10 +65,10 @@ export class AppComponent {
 
   navigationInterceptor(event) {
     if (event instanceof NavigationEnd) {
-      this.isHomePage = (location.pathname === '/');
-      const href = location.pathname.split('/')[1];
-      this.isAppView = ( href === 'auth' || href === 'reg' || href === 'game' || href === 'forgot' );
-      this.isCabinetPage = ( href === 'game' );
+      this.isHomePage = (location.hash === '#/');
+      const href = location.hash.split('#')[1];
+      this.isAppView = ( href === '/auth' || href === '/reg' || href === '/game' || href === '/forgot' );
+      this.isCabinetPage = ( href === '/game' );
     }
   }
 }
