@@ -317,7 +317,7 @@ export class gameComponent {
                 `&currency=${props.params.currency}` +
                 `&description=${props.params.description}` +
                 `&debug=1` +
-                `order_id=${props.params.order_id}` +
+                `&order_id=${props.params.order_id}` +
                 `&signature=${props.params.signature}` +
                 `&token=${base.storage.get('token')}`;
   }
