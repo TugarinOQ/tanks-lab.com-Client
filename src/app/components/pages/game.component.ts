@@ -307,7 +307,7 @@ export class gameComponent {
 
               this.redirectMerchant(res);
           }
-      })
+      });
   }
 
   redirectMerchant(props) {
