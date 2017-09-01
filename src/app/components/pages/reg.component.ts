@@ -50,6 +50,8 @@ export class regComponent {
 
     this.propsReg = { username: login.value, email: email.value, password: password.value, confirm: confirm.value };
 
+    this.propsReg = Object.assign(this.propsReg, { referral: sessionStorage.getItem('referral') });
+
     this.captcha.execute();
   }
 

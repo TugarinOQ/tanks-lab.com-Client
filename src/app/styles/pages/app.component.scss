@@ -218,6 +218,7 @@
           top: 0;
           left: 0;
           right: 0;
+          z-index: 1;
         }
 
         .promo_content {
@@ -713,6 +714,15 @@ hr.dotted {
     color: #b8b8a2;
     cursor: cursor('text');
     z-index: 2;
+  }
+
+  *, *:hover, *:active, *:focus, *::selection {
+    -webkit-touch-callout: default !important;
+    -webkit-user-select: all !important;
+    -khtml-user-select: all !important;
+    -moz-user-select: all !important;
+    -ms-user-select: all !important;
+    user-select: all !important;
   }
 }
 

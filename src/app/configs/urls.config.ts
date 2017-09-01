@@ -1,5 +1,6 @@
 export const urls__config = {
-  hostLocal: 'https://api.tanks-lab.com',
+  // hostLocal: 'https://api.tanks-lab.com',
+  hostLocal: 'http://localhost:8080',
   users: {
     auth: '/users/login',
     reg: '/users/register',
@@ -15,7 +16,9 @@ export const urls__config = {
   hangar: {
     getList: '/hangar/list',
     buySlot: '/hangar/slot',
-    getInfoTank: '/hangar/info'
+    getInfoTank: '/hangar/info',
+    getOutGold: '/hangar/getGold',
+    outGold: '/hangar/outGold'
   },
   shop: {
     getList: '/shop/list',

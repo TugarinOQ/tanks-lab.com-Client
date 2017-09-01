@@ -107,7 +107,7 @@ export class gameComponent {
 
       d3
           .select('.topBtn.gold .count')
-          .text(this.normalPrice(this.user.gold || 0));
+          .text(this.normalPrice(this.user.gold.toFixed(2) || 0));
 
       d3
           .select('.topBtn.silver .count')

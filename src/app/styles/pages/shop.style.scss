@@ -279,6 +279,10 @@
     }
   }
 
+  .tankNode + .separator {
+    margin: -110px -9px -30px;
+  }
+
   .group {
     &.tankBuyName {
       margin: 0 0 9px;
@@ -317,8 +321,8 @@
     float: right;
   }
 
-  &+.separator {
-    margin: -90px -9px 0;
+  & + .separator {
+    margin: -120px -9px -30px;
   }
 }
 

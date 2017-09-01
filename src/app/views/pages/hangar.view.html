@@ -14,12 +14,12 @@
             </div>
 
             <div class="status green" *ngIf="researchedTank">
-                В процессе производства...
+                В процессе сборки...
             </div>
 
             <div class="buttons clearfix">
-                <div class="small-btn long action" [ngClass]="{ disabled: !researchedTank }">
-                    <div class="text">Продать танки за <span class="ico goldColor">0.00 <i class="ico gold"></i></span></div>
+                <div class="small-btn long action" [ngClass]="{ disabled: !researchedTank }" (click)="preSellTank(selectedTank)">
+                    <div class="text">Продать готовые танки за <span class="ico goldColor">{{normalPrice(selectedTank.outGold)}} <i class="ico gold"></i></span></div>
                 </div>
             </div>
 
@@ -70,7 +70,6 @@
                 <div class="level {{_tank.level}}"></div>
             </div>
             <div class="tankName">{{_tank.displayName}}</div>
-            <div class="countBuildingTank">x{{_tank.count || 1}}</div>
         </li>
 
         <li class="item_carousel buyTank" *ngIf="showTank === true">
@@ -91,7 +90,7 @@
                     Купить слот
                 </div>
                 <div class="price">
-                    <i class="silver">{{price.slot}}</i>
+                    <i class="silver">{{normalPrice(price.slot)}}</i>
                 </div>
             </div>
         </li>

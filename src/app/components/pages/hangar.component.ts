@@ -32,7 +32,7 @@ export class hangarComponent {
     tanks = [];
     showTank = false;
     visibleToSell = false;
-    selectedTank = {};
+    selectedTank = <any>{};
     tankImprovements = [];
 
     countSeats = 0;
@@ -59,23 +59,30 @@ export class hangarComponent {
 
       alertBox.loading.show();
 
-      req.get(this.http, { url: urls__config.hostLocal + urls__config.hangar.getList, err__cb: (res) => {
+      req.get(this.http,
+          {
+            url: urls__config.hostLocal + urls__config.hangar.getList,
+            err__cb: (res) => {
 
-          alertBox.show({ title: 'Ошибка', html: res.error });
-      }, success__cb: (res) => {
+                alertBox.show({ title: 'Ошибка', html: res.error });
+            },
+            success__cb: (res) => {
 
-          alertBox.loading.hide();
+              alertBox.loading.hide();
 
-          this.tanks = this.getTank(res.tanks);
+              this.tanks = this.getTank(res.tanks);
 
-          this.countScreenSeats = new Array( parseInt( (window.screen.width / 165).toString() ) - Object.keys(res.tanks).length - 2);
-          this.freeSeats = res.countSeats - Object.keys(res.tanks).length;
-          this.countSeats = res.countSeats;
+              this.countScreenSeats = new Array( parseInt(
+                  (window.screen.width / 165).toString() ) - Object.keys(res.tanks).length - 2
+              );
+              this.freeSeats = res.countSeats - Object.keys(res.tanks).length;
+              this.countSeats = res.countSeats;
 
-          this.selTank(res.tanks[ Object.keys(res.tanks)[0] ]);
+              this.selTank(res.tanks[ Object.keys(res.tanks)[0] ]);
 
-          this.showTank = true;
-      }});
+              this.showTank = true;
+            }
+          });
     }
 
     getTank(tanks) {
@@ -84,7 +91,11 @@ export class hangarComponent {
 
       Object.keys(tanks).map((idxTank) => {
 
-          _tanks.push( tanks[idxTank] );
+          const tmpTank = tanks[idxTank];
+          tmpTank.key = idxTank;
+          tmpTank.outGold = 0.00;
+
+          _tanks.push( tmpTank );
       });
 
       return _tanks;
@@ -121,7 +132,10 @@ export class hangarComponent {
               });
           } else {
 
-              alertBox.show({ title: 'Ошибка', html: 'Недостаточно серебра для покупки дополнительного слота в Ангаре.' });
+              alertBox.show({
+                  title: 'Ошибка',
+                  html: 'Недостаточно серебра для покупки дополнительного слота в Ангаре.'
+              });
           }
       });
     }
@@ -147,6 +161,8 @@ export class hangarComponent {
 
     selTank(tank) {
 
+        alertBox.loading.show();
+
         this.selectedTank = tank;
 
         this.tankImprovements = Object.keys(tank.research);
@@ -161,7 +177,73 @@ export class hangarComponent {
             }
 
             this.updateResearchTime = setInterval(() => this.calcTimeResearchTank(tank), 1000);
+
+            alertBox.loading.hide();
+        } else {
+
+            req.post(this.http, {
+                url: urls__config.hostLocal + urls__config.hangar.getOutGold,
+                body: {
+                    tankID: tank.key
+                },
+                err__cb: (err) => {
+
+                    alertBox.show({ title: 'Ошибка', html: err.error });
+                },
+                success__cb: (res) => {
+
+                    alertBox.loading.hide();
+
+                    this.selectedTank.outGold = (res.outGold.toFixed(2));
+                }
+            });
         }
+    }
+
+    preSellTank(tank) {
+
+        alertBox.show({
+            title: 'Подтверждение продажи',
+            html: `Продать собранные ${tank.displayName} за <span class="ico goldColor">${this.normalPrice(tank.outGold)} <span class="ico gold"></span></span>?`,
+            buttons: [
+                {
+                    title: 'Отменить',
+                    classed: 'default',
+                    on: alertBox.hide
+                },
+                {
+                    title: 'Продать',
+                    classed: 'action',
+                    on: () => this.sellTank(req, tank)
+                }
+            ],
+            props: {
+                width: 400
+            }
+        });
+    }
+
+    sellTank(req, tank) {
+
+        alertBox.hide();
+        alertBox.loading.show();
+
+        req.post(this.http, {
+            url: urls__config.hostLocal + urls__config.hangar.outGold,
+            body: {
+                tankID: tank.key
+            },
+            err__cb: (err) => {
+
+                alertBox.show({ title: 'Ошибка', html: err.error });
+            },
+            success__cb: (res) => {
+
+                this.game.getData();
+
+                this.getTanksList();
+            }
+        });
     }
 
     calcTimeResearchTank(tank) {
@@ -181,5 +263,10 @@ export class hangarComponent {
         this.researchTime = researchTime.toTimeString().split(' ')[0];
 
         return endTime.getTime() > time.getTime();
+    }
+
+    normalPrice(price) {
+
+        return price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,');
     }
 }

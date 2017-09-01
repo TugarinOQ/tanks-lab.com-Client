@@ -61,13 +61,27 @@ export class AppComponent {
     });
 
     this.titleService.setTitle( 'Главная' + config.genTitle() );
+
+    const args = location.hash.split('?')[1];
+
+    if (args) {
+
+      const referral = args.split('referral=')[1];
+
+      if (referral) {
+
+          sessionStorage.setItem('referral', referral);
+      }
+    }
   }
 
   navigationInterceptor(event) {
     if (event instanceof NavigationEnd) {
-      this.isHomePage = (location.hash === '#/');
-      const href = location.hash.split('#')[1].split('/')[1];
-      this.isAppView = ( href === 'auth' || href === 'reg' || href === 'game' || href === 'forgot' );
+      const href = location.hash.split('#')[1].split('/')[1].split('?')[0];
+      this.isHomePage = (href === '');
+      this.isAppView = (
+          href === 'auth' || href === 'reg' || href === 'game' || href === 'forgot'
+      );
       this.isCabinetPage = ( href === 'game' );
     }
   }

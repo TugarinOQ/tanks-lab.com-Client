@@ -29,7 +29,18 @@ import 'rxjs/add/operator/map';
 export class shopComponent {
 
     types = ['type lt', 'type mt', 'type ht', 'type at-spg', 'type spg'];
-    levels = ['level I', 'level II', 'level III', 'level IV', 'level V', 'level VI', 'level VII', 'level VIII', 'level IX', 'level X'];
+    levels = [
+        'level I',
+        'level II',
+        'level III',
+        'level IV',
+        'level V',
+        'level VI',
+        'level VII',
+        'level VIII',
+        'level IX',
+        'level X'
+    ];
 
     selTypes = [];
     selLevels = [];
@@ -51,7 +62,12 @@ export class shopComponent {
         slot: 0
     };
 
-    constructor(private router: Router, private titleService: Title, private http: Http, private game: gameComponent) {
+    constructor(
+        private router: Router,
+        private titleService: Title,
+        private http: Http,
+        private game: gameComponent
+    ) {
 
         this.titleService.setTitle( 'Магазин' + config.genTitle() );
 
@@ -90,7 +106,8 @@ export class shopComponent {
         alertBox.loading.show();
 
         req.post(this.http, {
-            url: urls__config.hostLocal + urls__config.shop.getList, body: {filters: this.filters}, err__cb: (res) => {
+            url: urls__config.hostLocal + urls__config.shop.getList,
+            body: {filters: this.filters}, err__cb: (res) => {
 
                 alertBox.show({title: 'Ошибка', html: res.error});
             }, success__cb: (tanks) => {
@@ -110,9 +127,12 @@ export class shopComponent {
 
         this.filters.types = [];
 
-        $ev === true ? this.selTypes.push(type) : this.selTypes.splice(this.selTypes.indexOf(type), 1);
+        $ev === true ?
+            this.selTypes.push(type)
+            :
+            this.selTypes.splice(this.selTypes.indexOf(type), 1);
 
-        this.selTypes.map(type => {
+        this.selTypes.map((type) => {
 
             this.filters.types.push(type);
         });
@@ -126,9 +146,12 @@ export class shopComponent {
 
         this.filters.levels = [];
 
-        $ev === true ? this.selLevels.push(level) : this.selLevels.splice(this.selLevels.indexOf(level), 1);
+        $ev === true ?
+            this.selLevels.push(level)
+            :
+            this.selLevels.splice(this.selLevels.indexOf(level), 1);
 
-        this.selLevels.map(level => {
+        this.selLevels.map((level) => {
 
             this.filters.levels.push(level);
         });
@@ -145,7 +168,8 @@ export class shopComponent {
         alertBox.loading.show();
 
         req.post(this.http, {
-            url: urls__config.hostLocal + urls__config.hangar.getInfoTank, body: {tankID: idTank}, err__cb: (res) => {
+            url: urls__config.hostLocal + urls__config.hangar.getInfoTank,
+            body: {tankID: idTank}, err__cb: (res) => {
 
                 alertBox.show({title: 'Ошибка', html: res.error});
             }, success__cb: (tank) => {
@@ -243,7 +267,7 @@ export class shopComponent {
                             .select('.tankBuyBlock')
                             .select('input#additionSlot')
                             .on('change', function() {
-                                __this.eventAdditionSlot(this.checked, __this)
+                                __this.eventAdditionSlot(this.checked, __this);
                             });
 
                         __this.updateTotalPrice(tank.price);
@@ -280,7 +304,7 @@ export class shopComponent {
 
                 this.router.navigateByUrl('/game/hangar');
             }
-        })
+        });
     }
 
     eventAdditionSlot(ev, _this) {
@@ -321,6 +345,6 @@ export class shopComponent {
         return {
             lastPrice: this.buyTankBox.lastPrice,
             buyAvailable: this.buyTankBox.lastPrice <= silverBalance
-        }
+        };
     }
 }
