@@ -96,7 +96,7 @@ export const alertBox = {
             .text(title)
             .append('div')
             .classed('closeBtn', true)
-            .on('click', alertBox.hide);
+            .on('click', (props.onClose) ? () => alertBox.hide(props.onClose) : alertBox.hide);
 
         content
             .append('div')

@@ -1,10 +1,15 @@
 <div class="" [ngClass]="{'page-wrapper': !isCabinetPage, 'container-fluid no_padding font': isCabinetPage}">
   <div class="cm-holder" *ngIf="!isCabinetPage">
     <div class="cm-content">
-      <div class="cm-menu user">
-        <a routerLink="/auth" class="cm-link cm-register">Войти</a>
+      <div class="cm-menu user" *ngIf="!isAuthUser">
+        <a routerLink="/auth" class="cm-link cm-auth">Войти</a>
         <span class="cm-menu_text-or">или</span>
         <a routerLink="/reg" class="cm-link cm-register">создать аккаунт</a>
+      </div>
+      <div class="cm-menu user" *ngIf="isAuthUser">
+        <a routerLink="/game/hangar" class="cm-link cm-hangar">Перейти в ангар</a>
+        <span class="cm-menu_text-or">или</span>
+        <a (click)="logout()" class="cm-link cm-logout">выйти</a>
       </div>
       <a class="cm-singletons cm-singletons__logo" routerLink="/">
         <span class="cm-singletons_ico-wrapper">
@@ -45,11 +50,12 @@
       <div class="footer_bottom-wrapper">
         <div class="footer_copyright">
           <div class="footer_copyright-text">
-            <br>
             © 2017 Tanks-Lab.com 18+
-            <br>
-            <br>
-            <a href="https://megakassa.ru/" title="Платежный агрегатор МегаКасса" target="_blank"><img src="https://megakassa.ru/pr/dark_en.jpg" alt="Megakassa" /></a>
+            &nbsp;|&nbsp;
+            Payment by
+            <a href="https://megakassa.ru/" title="Платежный агрегатор МегаКасса" target="_blank">
+              MegaKassa
+            </a>
           </div>
         </div>
       </div>

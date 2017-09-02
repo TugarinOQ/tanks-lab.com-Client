@@ -6,6 +6,7 @@ import { isNullOrUndefined } from 'util';
 
 import * as d3 from 'd3';
 import { config } from '../../configs/base.config';
+import { base } from '../../modules/base.module';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
   isLogged = false;
   year = new Date().getFullYear();
   isAppView = false;
+  isAuthUser = false;
   isHomePage = false;
   isCabinetPage = false;
 
@@ -25,10 +27,10 @@ export class AppComponent {
       text: 'О проекте',
       href: ''
     },
-    {
-      text: 'Статистика',
-      href: ''
-    },
+    // {
+    //   text: 'Статистика',
+    //   href: ''
+    // },
     {
       text: 'Гарантии',
       href: ''
@@ -39,10 +41,6 @@ export class AppComponent {
     },
     {
       text: 'Отзывы',
-      href: ''
-    },
-    {
-      text: 'Поддержка',
       href: ''
     }
   ];
@@ -55,6 +53,8 @@ export class AppComponent {
 
       window['user'] = { };
     }
+
+    this.isAuthUser = !!base.storage.get('token');
 
     this.router.events.subscribe((event: any): void => {
       this.navigationInterceptor(event);
@@ -84,6 +84,13 @@ export class AppComponent {
       );
       this.isCabinetPage = ( href === 'game' );
     }
+  }
+
+  logout() {
+
+    base.storage.remove('token');
+
+    location.reload(true);
   }
 }
 

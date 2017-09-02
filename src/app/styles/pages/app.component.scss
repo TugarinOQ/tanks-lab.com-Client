@@ -65,8 +65,8 @@
         }
 
         .cm-link {
-          -webkit-transition: color ease 0.1s, text-shadow ease 0.1s;
-          transition: color ease 0.1s, text-shadow ease 0.1s;
+          -webkit-transition: all ease 0.1s;
+          transition: all ease 0.1s;
           color: #707273;
           display: inline-block;
           position: relative;
@@ -78,6 +78,16 @@
           &:hover {
             color: #e5e5e5 !important;
             text-decoration: none;
+          }
+
+          &.cm-hangar {
+
+            color: white;
+            opacity: 0.6;
+
+            &:hover {
+              opacity: 1;
+            }
           }
         }
       }
@@ -359,6 +369,15 @@
         .footer_copyright-text {
           padding: 0 calc(1440px - 100% - 56px*2);
           text-align: center;
+
+          a {
+            color: #6b6b6b;
+            transition: color .15s ease-out;
+
+            &:hover {
+              color: #8e8d8d !important;
+            }
+          }
         }
       }
     }

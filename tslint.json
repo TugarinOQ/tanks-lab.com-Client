@@ -5,10 +5,7 @@
   "rules": {
     "member-access": false,
     "member-ordering": [
-      true,
-      "public-before-private",
-      "static-before-instance",
-      "variables-before-functions"
+      false
     ],
     "no-any": false,
     "no-inferrable-types": false,
@@ -54,7 +51,7 @@
     "no-empty": false,
     "no-eval": true,
     "no-null-keyword": false,
-    "no-shadowed-variable": true,
+    "no-shadowed-variable": false,
     "no-string-literal": false,
     "no-switch-case-fall-through": true,
     "no-unreachable": true,

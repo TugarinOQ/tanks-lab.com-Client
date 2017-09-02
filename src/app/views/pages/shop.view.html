@@ -33,7 +33,7 @@
         <div class="tank_list">
           <div class="overflow">
 
-            <div class="tank" (click)="preBuyTank(tank._id, tank.visibleToSell);" [ngClass]="{'notSellToUser': tank.visibleToSell}" *ngFor="let tank of tanks">
+            <div class="tank" (click)="preBuyTank(tank._id, !tank.visibleToSell);" [ngClass]="{'notSellToUser': !tank.visibleToSell}" *ngFor="let tank of tanks">
               <div class="nation {{tank.nation}}"></div>
               <div class="levelInfo">
                 <div class="type {{tank.type}}"></div>
@@ -94,13 +94,12 @@
           <i class="ico silver"></i>
         </div>
       </div>
-      <div class="group">
+      <div class="group fastResearch">
         <div class="name">
-          <checkbox [id]="'momentResearch'" [title]="'Моментальное изучение танка'"></checkbox>
+          <checkbox [id]="'fastResearch'" [title]="'Моментальное изучение танка'"></checkbox>
         </div>
         <span class="outgrowth"></span>
         <div class="price">
-          {{normalPrice(price.slot)}}
           <i class="ico silver"></i>
         </div>
       </div>

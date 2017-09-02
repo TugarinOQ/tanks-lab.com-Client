@@ -40,7 +40,12 @@ export class gameComponent {
       ]
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: Http, private titleService: Title) {
+  constructor(
+      private router: Router,
+      private route: ActivatedRoute,
+      private http: Http,
+      private titleService: Title
+  ) {
 
     this.titleService.setTitle( config.genTitle() );
 
@@ -215,11 +220,11 @@ export class gameComponent {
                   .attr('value', '0')
                   .on('keyup', function() {
 
-                      __this.upBalanceChangeValue({ money: this.value })
+                      __this.upBalanceChangeValue({ money: this.value });
                   })
                   .on('change', function() {
 
-                      __this.upBalanceChangeValue({ money: this.value })
+                      __this.upBalanceChangeValue({ money: this.value });
                   });
 
               const silverInput = viewHtml
@@ -241,18 +246,18 @@ export class gameComponent {
                   .attr('value', '0')
                   .on('keyup', function() {
 
-                      __this.upBalanceChangeValue({ silver: this.value })
+                      __this.upBalanceChangeValue({ silver: this.value });
                   })
                   .on('change', function() {
 
-                      __this.upBalanceChangeValue({ silver: this.value })
+                      __this.upBalanceChangeValue({ silver: this.value });
                   });
 
               viewHtml
                   .append('div')
                   .classed('separator', true);
           }
-      })
+      });
   }
 
   upBalanceChangeValue({ money = null, silver = null }) {
@@ -270,7 +275,10 @@ export class gameComponent {
       let _moneyCourse = money;
       let _silverCourse = silver;
 
-      (money !== null && silver === null) ? _silverCourse = money * this.pay.course : _moneyCourse = silver / this.pay.course;
+      (money !== null && silver === null) ?
+          _silverCourse = money * this.pay.course
+          :
+          _moneyCourse = silver / this.pay.course;
 
       rubleHtml
           .node()

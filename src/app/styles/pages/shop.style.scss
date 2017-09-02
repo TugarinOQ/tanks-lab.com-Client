@@ -125,15 +125,6 @@
         background: url('../../../assets/imgs/bgBox.png') repeat;
         z-index: 20;
       }
-
-      .tankAmount {
-        color: red;
-        z-index: 21;
-
-        &.availableSell {
-          color: lightgray;
-        }
-      }
     }
 
     &:before {
@@ -202,6 +193,17 @@
       line-height: 105px;
       font-size: 14px;
       color: lightgray;
+
+      & {
+        color: red;
+        text-shadow: 0 0 10px red;
+        z-index: 21;
+
+        &.availableSell {
+          color: lightgray;
+          text-shadow: none;
+        }
+      }
     }
   }
 }
@@ -399,7 +401,7 @@
     position: absolute;
     top: 15px;
     left: 110px;
-    font-size: 18px;
+    font-size: 15px;
     text-shadow: 0 5px 10px black;
 
     .small {

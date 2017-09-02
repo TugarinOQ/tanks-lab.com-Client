@@ -53,13 +53,16 @@ export class shopComponent {
     };
 
     buyTankBox = {
+        price: 0,
         buyAvailable: true,
         additionSlot: false,
+        fastResearch: false,
         lastPrice: 0
     };
 
     price = {
-        slot: 0
+        slot: 0,
+        fastResearch: 0
     };
 
     constructor(
@@ -175,8 +178,10 @@ export class shopComponent {
             }, success__cb: (tank) => {
 
                 this.buyTankBox = {
+                    price: tank.price,
                     buyAvailable: true,
                     additionSlot: false,
+                    fastResearch: false,
                     lastPrice: 0
                 };
 
@@ -231,6 +236,17 @@ export class shopComponent {
                 price
                     .html(`${this.normalPrice(tank.price)} ${price.html()}`);
 
+                const priceFastResearch = htmlBuyTankBox
+                    .select('.fastResearch')
+                    .select('.price');
+
+                priceFastResearch
+                    .html(`${
+                        this.normalPrice((tank.price * this.price.fastResearch))
+                    } ${
+                        priceFastResearch.html()
+                    }`);
+
                 htmlBuyTankBox
                     .selectAll('.checkbtn.academy .checked .academy')
                     .classed(tank.nation, true);
@@ -251,11 +267,15 @@ export class shopComponent {
                         {
                             title: 'Купить',
                             classed: 'action',
-                            on: () => this.buyTank({ tank: tank })
+                            on: () => this.buyTank({ tank: tank, tmpBox: tmpBox })
                         }
                     ],
                     props: {
-                        width: 440
+                        width: 440,
+                        onClose: () => {
+
+                            htmlBuyTankBox.html( tmpBox );
+                        }
                     },
                     cb: (__this) => {
 
@@ -270,6 +290,13 @@ export class shopComponent {
                                 __this.eventAdditionSlot(this.checked, __this);
                             });
 
+                        d3
+                            .select('.tankBuyBlock')
+                            .select('input#fastResearch')
+                            .on('change', function() {
+                                __this.eventFastResearch(this.checked, __this);
+                            });
+
                         __this.updateTotalPrice(tank.price);
                     }
                 });
@@ -277,23 +304,28 @@ export class shopComponent {
         });
     }
 
-    buyTank({ tank }) {
+    buyTank({ tank, tmpBox }) {
 
-        if (this.buyTankBox.buyAvailable === false) {
-            return;
-        }
+        // if (this.buyTankBox.buyAvailable === false) {
+        //     return;
+        // }
 
         alertBox.hide( alertBox.loading.show );
 
         const data = {
             tankID: tank._id,
-            slot: this.buyTankBox.additionSlot
+            slot: this.buyTankBox.additionSlot,
+            fastResearch: this.buyTankBox.fastResearch
         };
 
         req.post(this.http, {
             url: urls__config.hostLocal + urls__config.shop.buyTank,
             body: data,
             err__cb: (res) => {
+
+                const htmlBuyTankBox = d3
+                    .select('#buyTankBox')
+                    .html( tmpBox );
 
                 alertBox.show({title: 'Ошибка', html: res.error});
             }, success__cb: (tanks) => {
@@ -314,6 +346,13 @@ export class shopComponent {
         _this.updateTotalPrice( (ev) ? (_this.price.slot) : (-(_this.price.slot)) );
     }
 
+    eventFastResearch(ev, _this) {
+
+        this.buyTankBox.fastResearch = ev;
+
+        _this.updateTotalPrice( (ev) ? ( this.buyTankBox.price * _this.price.fastResearch ) : (-( this.buyTankBox.price * _this.price.fastResearch )) );
+    }
+
     updateTotalPrice(price) {
 
         const totalPrice = this.checkPrice(price);
@@ -330,8 +369,8 @@ export class shopComponent {
 
         d3
             .select('#alert')
-            .select('._btns .action')
-            .classed('disabled', !totalPrice.buyAvailable);
+            .select('._btns .action');
+            // .classed('disabled', !totalPrice.buyAvailable);
 
         this.buyTankBox.buyAvailable = totalPrice.buyAvailable;
     }
