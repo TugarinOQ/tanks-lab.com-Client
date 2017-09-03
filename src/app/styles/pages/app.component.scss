@@ -214,7 +214,7 @@
           padding: 20px 0;
         }
 
-        .promo_logo {
+        .logo {
           background: url('../../../assets/imgs/logo.png') no-repeat center center;
           font-size: 0;
           width: 550px;
@@ -258,6 +258,25 @@
           }
         }
       }
+    }
+  }
+
+  .titleBlock {
+    height: 255px;
+    position: relative;
+    z-index: 5;
+
+    .logo {
+      font-size: 0;
+      line-height: 0;
+      background: url('../../../assets/imgs/logo.png') no-repeat center center;
+      background-size: 100% 100%;
+      width: 317px;
+      height: 190px;
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
     }
   }
 }

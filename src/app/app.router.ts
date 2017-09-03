@@ -6,6 +6,8 @@ import { homeComponent } from './components/pages/home.component';
 import { authComponent } from './components/pages/auth.component';
 import { regComponent } from './components/pages/reg.component';
 import { forgotComponent } from './components/pages/forgot.component';
+import { aboutComponent } from './components/pages/about.component';
+import { helpmeComponent } from './components/pages/helpme.component';
 import { gameComponent } from './components/pages/game.component';
 
 export const appRoutes: Routes = [
@@ -24,6 +26,14 @@ export const appRoutes: Routes = [
   {
     path: 'forgot',
     component: forgotComponent
+  },
+  {
+    path: 'about',
+    component: aboutComponent
+  },
+  {
+    path: 'helpme',
+    component: helpmeComponent
   },
   {
     path: 'game',

@@ -18,6 +18,7 @@ export class AppComponent {
   isLogged = false;
   year = new Date().getFullYear();
   isAppView = false;
+  isStaticPage = false;
   isAuthUser = false;
   isHomePage = false;
   isCabinetPage = false;
@@ -25,24 +26,28 @@ export class AppComponent {
   menuitem = [
     {
       text: 'О проекте',
-      href: ''
+      href: 'about'
     },
+    {
+      text: 'Помощь',
+      href: 'helpme'
+    }
     // {
     //   text: 'Статистика',
     //   href: ''
     // },
-    {
-      text: 'Гарантии',
-      href: ''
-    },
-    {
-      text: 'Конкурсы',
-      href: ''
-    },
-    {
-      text: 'Отзывы',
-      href: ''
-    }
+    // {
+    //   text: 'Гарантии',
+    //   href: ''
+    // },
+    // {
+    //   text: 'Конкурсы',
+    //   href: ''
+    // },
+    // {
+    //   text: 'Отзывы',
+    //   href: ''
+    // }
   ];
 
   constructor(private http: Http, private router: Router, private titleService: Title ) {
@@ -83,6 +88,7 @@ export class AppComponent {
           href === 'auth' || href === 'reg' || href === 'game' || href === 'forgot'
       );
       this.isCabinetPage = ( href === 'game' );
+      this.isStaticPage = ( href === 'about' || href === 'helpme' );
     }
   }
 

@@ -18,19 +18,19 @@
           </span>
         </span>
       </a>
-      <a class="cm-singletons cm-singletons__main" style="color: #ffffff" href="{{item.href}}" *ngFor="let item of menuitem">
+      <a class="cm-singletons cm-singletons__main"  style="color: #ffffff" routerLink="{{item.href}}" routerLinkActive="active" *ngFor="let item of menuitem">
         <span class="cm-singletons_text">{{item.text}}</span>
       </a>
     </div>
   </div>
 
   <div class="content-wrapper">
-    <div class="bg" [ngClass]="{'big': isAppView}" *ngIf="!isCabinetPage"></div>
+    <div class="bg" [ngClass]="{'big': isAppView}" *ngIf="!isCabinetPage && !isStaticPage"></div>
     <div class="sparkles" *ngIf="!isCabinetPage"></div>
-    <section class="promo" *ngIf="!isCabinetPage">
+    <section class="promo" *ngIf="!isCabinetPage && !isStaticPage">
       <div class="promo-inner">
         <div class="promo-descr" [ngClass]="{'big': isAppView}">
-          <a routerLink="/" class="promo_logo" [ngClass]="{'big': isAppView}" tabindex="-1">Экономическая игра Tanks-Lab.com</a>
+          <a routerLink="/" class="logo" [ngClass]="{'big': isAppView}" tabindex="-1">Экономическая игра Tanks-Lab.com</a>
           <div class="promo_content" *ngIf="isHomePage">
             <p class="promo_info">Tanks-Lab.com - это увлекательный игровой симулятор с возможностью заработка и вывода реальных денег! Все что от Вас требуется это зарегистрироваться в нашем проекте, развивать свое танкостроение и получать стабильный доход!</p>
             <a routerLink="/reg" class="big-button">
@@ -42,6 +42,7 @@
         </div>
       </div>
     </section>
+
     <router-outlet></router-outlet>
   </div>
 

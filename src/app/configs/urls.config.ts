@@ -11,7 +11,8 @@ export const urls__config = {
     valid: '/token/valid'
   },
   payments: {
-    genURL: '/payments/genURL'
+    genURL: '/payments/genURL',
+    getListPaymentMethod: '/payments/getListPaymentMethod'
   },
   hangar: {
     getList: '/hangar/list',

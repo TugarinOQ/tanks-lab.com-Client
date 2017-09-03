@@ -260,6 +260,126 @@ export class gameComponent {
       });
   }
 
+  outBalance() {
+
+      alertBox.show({
+          title: 'Вывод средств',
+          html: ``,
+          props: {
+              width: 400
+          },
+          buttons: [
+              {
+                  title: 'Отменить',
+                  classed: 'default',
+                  on: () => alertBox.hide()
+              },
+              {
+                  title: 'Вывести',
+                  classed: 'action',
+                  on: () => this.preOutBalance()
+              }
+          ],
+          cb: () => {
+
+              const viewHtml = d3.select('#alert .box').select('.html');
+
+              const __this = this;
+
+              viewHtml
+                  .append('div')
+                  .classed('course', true)
+                  .html(`<span class="textCourse">Курс обмена:&nbsp;</span>` +
+                      `<span class="ico silverColor">1&nbsp;₽</span>` +
+                      `&nbsp;=&nbsp;` +
+                      `<span class="ico silverColor">100&nbsp;<span class="ico silver"></span>`);
+
+              viewHtml
+                  .append('div')
+                  .classed('separator', true);
+
+              const methodPay = viewHtml
+                  .append('div')
+                  .classed('groupInput', true);
+
+              methodPay
+                  .append('div')
+                  .classed('nameInput', true)
+                  .text('Способ оплаты:');
+
+              const selectMethod = methodPay
+                  .append('div')
+                  .classed('input', true)
+                  .append('select')
+                  .classed('select', true)
+                  .selectAll('option')
+                  .data(this.pay.methods);
+
+              selectMethod
+                  .enter()
+                  .append('option')
+                  .attr('value', (name) => name.split(' ').join('').toLowerCase())
+                  .text((name) => name);
+
+              const rubleInput = viewHtml
+                  .append('div')
+                  .classed('groupInput', true);
+
+              rubleInput
+                  .append('div')
+                  .classed('nameInput', true)
+                  .text('Сумма в рублях:');
+
+              rubleInput
+                  .append('div')
+                  .classed('input', true)
+                  .append('input')
+                  .attr('type', 'number')
+                  .attr('id', 'rubleInput')
+                  .attr('name', 'rubleInput')
+                  .attr('value', '0')
+                  .on('keyup', function() {
+
+                      __this.upBalanceChangeValue({ money: this.value });
+                  })
+                  .on('change', function() {
+
+                      __this.upBalanceChangeValue({ money: this.value });
+                  });
+
+              const silverInput = viewHtml
+                  .append('div')
+                  .classed('groupInput', true);
+
+              silverInput
+                  .append('div')
+                  .classed('nameInput', true)
+                  .text('Кол-во серебра:');
+
+              silverInput
+                  .append('div')
+                  .classed('input', true)
+                  .append('input')
+                  .attr('type', 'number')
+                  .attr('id', 'silverInput')
+                  .attr('name', 'silverInput')
+                  .attr('value', '0')
+                  .on('keyup', function() {
+
+                      __this.upBalanceChangeValue({ silver: this.value });
+                  })
+                  .on('change', function() {
+
+                      __this.upBalanceChangeValue({ silver: this.value });
+                  });
+
+              viewHtml
+                  .append('div')
+                  .classed('separator', true);
+          }
+      });
+  }
+
   upBalanceChangeValue({ money = null, silver = null }) {
 
       const html = d3
@@ -313,20 +433,30 @@ export class gameComponent {
           },
           success__cb: (res) => {
 
-              this.redirectMerchant(res);
+              window.location.href = res.url;
           }
       });
   }
 
-  redirectMerchant(props) {
+  preOutBalance() {
 
-      window.location.href = `${props.url}?shop_id=${props.params.shop_id}` +
-                `&amount=${props.params.amount}` +
-                `&currency=${props.params.currency}` +
-                `&description=${props.params.description}` +
-                `&debug=1` +
-                `&order_id=${props.params.order_id}` +
-                `&signature=${props.params.signature}` +
-                `&token=${base.storage.get('token')}`;
+      alertBox.hide(() => {
+
+          alertBox.loading.show();
+      });
+
+      req.get(this.http, {
+          url: urls__config.hostLocal + urls__config.payments.getListPaymentMethod,
+          err__cb: (err) => {
+
+              return alertBox.show({ title: 'Ошибка', html: err.error });
+          },
+          success__cb: (res) => {
+
+              alertBox.loading.hide();
+
+              console.log(res);
+          }
+      });
   }
 }
