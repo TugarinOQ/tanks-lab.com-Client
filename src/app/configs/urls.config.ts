@@ -1,6 +1,6 @@
 export const urls__config = {
-  hostLocal: 'https://api.tanks-lab.com',
-  // hostLocal: 'http://localhost:8080',
+  // hostLocal: 'https://api.tanks-lab.com',
+  hostLocal: 'http://localhost:8080',
   users: {
     auth: '/users/login',
     reg: '/users/register',
@@ -12,7 +12,7 @@ export const urls__config = {
   },
   payments: {
     genURL: '/payments/genURL',
-    getListPaymentMethod: '/payments/getListPaymentMethod'
+    withdrawCreate: '/payments/withdrawCreate'
   },
   hangar: {
     getList: '/hangar/list',

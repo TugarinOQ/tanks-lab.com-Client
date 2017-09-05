@@ -61,7 +61,7 @@
   }
 
   .text {
-    color: #dededew;
+    color: #dedede;
   }
 
   &:before, &:after {
@@ -105,6 +105,52 @@
   &:not(.disabled) {
     &:hover:before, &:hover:after {
       opacity: 1;
+    }
+  }
+}
+
+.orange-btn {
+  display: inline-block;
+  background: url('../../assets/imgs/btn/orange/btn-bg.png') no-repeat 0 0;
+  height: 30px;
+  margin: 0 35px 0 0;
+  position: relative;
+  text-decoration: none;
+  vertical-align: middle;
+  box-shadow: 0 0 20px 0 black;
+  cursor: cursor('pointer');
+  transition: background-image .3s, text-shadow .3s;
+
+  .orange-btn-right {
+    border: none;
+    background: url('../../assets/imgs/btn/orange/btn-bg.png') no-repeat 100% 0;
+    color: #fff;
+    font: bold 13px Arial,"Helvetica CY",Helvetica,sans-serif;
+    cursor: pointer;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-right: -35px;
+    min-width: 50px;
+    padding: 0 22px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 3px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 0 1px rgba(255,18,0,0.2);
+    transition: background-image .3s, box-shadow .3s;
+  }
+
+  &:hover {
+    background-position: 0 -30px;
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+
+    .orange-btn-right {
+      background-position: 100% -30px;
+      box-shadow: 0 0 0 1px rgba(255,89,24,0.15), 0 0 25px rgba(255,18,0,0.3);
     }
   }
 }

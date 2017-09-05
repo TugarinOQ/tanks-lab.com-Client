@@ -428,8 +428,10 @@ export class researchComponent {
         alertBox.show({
             title: 'Подтверждение исследования',
             html: `Исследовать ${tank.info.displayName} за ` +
-            `<span class="ico silverColor">${tank.info.pricePractice} <span class="ico whiteStar"></span></span>` +
-            ` (из них <span class="ico silverColor">${ tank.info.pricePractice - tank.info.practice } ` +
+            `<span class="ico silverColor">` +
+            `${tank.info.pricePractice} <span class="ico whiteStar"></span></span>` +
+            ` (из них <span class="ico silverColor">` +
+            `${ tank.info.pricePractice - tank.info.practice } ` +
             `<span class="ico goldStar"></span></span>)?`,
             buttons: [
                 {
@@ -471,6 +473,6 @@ export class researchComponent {
 
                 __this.getData();
             }
-        })
+        });
     }
 }

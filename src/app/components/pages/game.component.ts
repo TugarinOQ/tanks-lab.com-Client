@@ -35,8 +35,27 @@ export class gameComponent {
   pay = {
       course: 100,
       methods: [
-          'VISA / MasterCard',
-          'Yandex.Money'
+          { name: 'VISA / MasterCard', code: 8 },
+          { name: 'Yandex.Money', code: 1 },
+          { name: 'PerfectMoney', code: 1 },
+          { name: 'Payeer', code: 1 },
+          { name: 'Альфа-Клик', code: 1 },
+          { name: 'Промсвязьбанк', code: 1 },
+          { name: 'Банковский перевод', code: 1 },
+          { name: 'Платежные терминалы России', code: 1 },
+          { name: 'М.видео', code: 1 },
+          { name: 'Элекснет', code: 1 },
+          { name: 'Лидер', code: 1 },
+          { name: 'МосОблБанк', code: 1 },
+          { name: 'Евросеть', code: 1 },
+          { name: 'Связной', code: 1 },
+          { name: 'Билайн', code: 1 },
+          { name: 'Tele2', code: 1 }
+      ],
+      withdraw: [
+          { name: 'VISA / MasterCard', code: 73 },
+          { name: 'Yandex.Money', code: 71 },
+          { name: 'QIWI Wallet', code: 74 }
       ]
   };
 
@@ -116,7 +135,7 @@ export class gameComponent {
 
       d3
           .select('.topBtn.silver .count')
-          .text(this.normalPrice(this.user.silver || 0));
+          .text(this.normalPrice(this.user.silver.toFixed(0) || 0));
 
       d3
           .select('.topBtn.practice .count')
@@ -198,8 +217,8 @@ export class gameComponent {
               selectMethod
                   .enter()
                   .append('option')
-                  .attr('value', (name) => name.split(' ').join('').toLowerCase())
-                  .text((name) => name);
+                  .attr('value', (data) => data.code)
+                  .text((data) => data.name);
 
               const rubleInput = viewHtml
                   .append('div')
@@ -217,7 +236,7 @@ export class gameComponent {
                   .attr('type', 'number')
                   .attr('id', 'rubleInput')
                   .attr('name', 'rubleInput')
-                  .attr('value', '0')
+                  .attr('placeholder', '0')
                   .on('keyup', function() {
 
                       __this.upBalanceChangeValue({ money: this.value });
@@ -243,7 +262,7 @@ export class gameComponent {
                   .attr('type', 'number')
                   .attr('id', 'silverInput')
                   .attr('name', 'silverInput')
-                  .attr('value', '0')
+                  .attr('placeholder', '0')
                   .on('keyup', function() {
 
                       __this.upBalanceChangeValue({ silver: this.value });
@@ -290,9 +309,9 @@ export class gameComponent {
                   .append('div')
                   .classed('course', true)
                   .html(`<span class="textCourse">Курс обмена:&nbsp;</span>` +
-                      `<span class="ico silverColor">1&nbsp;₽</span>` +
+                      `<span class="ico silverColor">1&nbsp;<span class="ico gold"></span>` +
                       `&nbsp;=&nbsp;` +
-                      `<span class="ico silverColor">100&nbsp;<span class="ico silver"></span>`);
+                      `<span class="ico silverColor">1&nbsp;₽</span>`);
 
               viewHtml
                   .append('div')
@@ -305,7 +324,7 @@ export class gameComponent {
               methodPay
                   .append('div')
                   .classed('nameInput', true)
-                  .text('Способ оплаты:');
+                  .text('Платежная система:');
 
               const selectMethod = methodPay
                   .append('div')
@@ -313,69 +332,119 @@ export class gameComponent {
                   .append('select')
                   .classed('select', true)
                   .selectAll('option')
-                  .data(this.pay.methods);
+                  .data(this.pay.withdraw);
 
               selectMethod
                   .enter()
                   .append('option')
-                  .attr('value', (name) => name.split(' ').join('').toLowerCase())
-                  .text((name) => name);
+                  .attr('value', (data) => data.code)
+                  .text((data) => data.name);
 
-              const rubleInput = viewHtml
+              const walletInput = viewHtml
                   .append('div')
                   .classed('groupInput', true);
 
-              rubleInput
+              walletInput
                   .append('div')
                   .classed('nameInput', true)
-                  .text('Сумма в рублях:');
+                  .text('Кошелек:');
 
-              rubleInput
+              walletInput
+                  .append('div')
+                  .classed('input', true)
+                  .append('input')
+                  .attr('type', 'text')
+                  .attr('id', 'walletInput')
+                  .attr('name', 'walletInput')
+                  .attr('placeholder', '000-000000');
+
+              const goldInput = viewHtml
+                  .append('div')
+                  .classed('groupInput', true);
+
+              goldInput
+                  .append('div')
+                  .classed('nameInput', true)
+                  .text('Сумма в золоте:');
+
+              goldInput
                   .append('div')
                   .classed('input', true)
                   .append('input')
                   .attr('type', 'number')
-                  .attr('id', 'rubleInput')
-                  .attr('name', 'rubleInput')
-                  .attr('value', '0')
+                  .attr('id', 'goldInput')
+                  .attr('name', 'goldInput')
+                  .attr('placeholder', '0')
                   .on('keyup', function() {
 
-                      __this.upBalanceChangeValue({ money: this.value });
+                      const money = (d3.select(this).node().value);
+
+                      d3
+                          .select('#alert')
+                          .select('.group.totalPrice')
+                          .select('.totalPrice')
+                          .select('span')
+                          .text( __this.normalPrice(money - ( money * 0.05 )) );
                   })
                   .on('change', function() {
 
-                      __this.upBalanceChangeValue({ money: this.value });
-                  });
+                      const money = (d3.select(this).node().value);
 
-              const silverInput = viewHtml
-                  .append('div')
-                  .classed('groupInput', true);
-
-              silverInput
-                  .append('div')
-                  .classed('nameInput', true)
-                  .text('Кол-во серебра:');
-
-              silverInput
-                  .append('div')
-                  .classed('input', true)
-                  .append('input')
-                  .attr('type', 'number')
-                  .attr('id', 'silverInput')
-                  .attr('name', 'silverInput')
-                  .attr('value', '0')
-                  .on('keyup', function() {
-
-                      __this.upBalanceChangeValue({ silver: this.value });
-                  })
-                  .on('change', function() {
-
-                      __this.upBalanceChangeValue({ silver: this.value });
+                      d3
+                          .select('#alert')
+                          .select('.group.totalPrice')
+                          .select('.totalPrice')
+                          .select('span')
+                          .text( __this.normalPrice(money - ( money * 0.05 )) );
                   });
 
               viewHtml
                   .append('div')
                   .classed('separator', true);
+
+              const totalCommission = viewHtml
+                  .append('div')
+                  .classed('group', true);
+
+              totalCommission
+                  .append('div')
+                  .classed('name title small', true)
+                  .text('Комиссия');
+
+              totalCommission
+                  .append('span')
+                  .classed('outgrowth', true);
+
+              totalCommission
+                  .append('div')
+                  .classed('totalPrice', true)
+                  .append('span')
+                  .text('5%');
+
+              const totalPrice = viewHtml
+                  .append('div')
+                  .classed('group totalPrice', true);
+
+              totalPrice
+                  .append('div')
+                  .classed('name title', true)
+                  .text('Итого');
+
+              totalPrice
+                  .append('span')
+                  .classed('outgrowth', true);
+
+              const totalPriceView = totalPrice
+                  .append('div')
+                  .classed('totalPrice', true);
+
+              totalPriceView
+                  .append('span')
+                  .text('0');
+
+              totalPriceView
+                  .append('span')
+                  .html('&nbsp;₽');
           }
       });
   }
@@ -440,13 +509,22 @@ export class gameComponent {
 
   preOutBalance() {
 
+      const method = d3.select('#alert').select('.html').select('select.select').node().value;
+      const wallet = d3.select('#alert').select('.html').select('input#walletInput').node().value;
+      const gold = d3.select('#alert').select('.html').select('input#goldInput').node().value;
+
       alertBox.hide(() => {
 
           alertBox.loading.show();
       });
 
-      req.get(this.http, {
-          url: urls__config.hostLocal + urls__config.payments.getListPaymentMethod,
+      req.post(this.http, {
+          url: urls__config.hostLocal + urls__config.payments.withdrawCreate,
+          body: {
+              method: method,
+              wallet: wallet,
+              gold: gold
+          },
           err__cb: (err) => {
 
               return alertBox.show({ title: 'Ошибка', html: err.error });
@@ -455,7 +533,7 @@ export class gameComponent {
 
               alertBox.loading.hide();
 
-              console.log(res);
+              return alertBox.show({ title: 'Вывод средств', html: 'Деньги успешно выведенны. В течении 5 минут они поступят на ваш кошелек!' });
           }
       });
   }

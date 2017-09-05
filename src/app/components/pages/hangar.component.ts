@@ -204,7 +204,11 @@ export class hangarComponent {
 
         alertBox.show({
             title: 'Подтверждение продажи',
-            html: `Продать собранные ${tank.displayName} за <span class="ico goldColor">${this.normalPrice(tank.outGold)} <span class="ico gold"></span></span>?`,
+            html: `Продать собранные ${tank.displayName} за ` +
+            `<span class="ico goldColor">` +
+            `${this.normalPrice(tank.outGold)} <span class="ico gold"></span></span>` +
+            `и <span class="ico silverColor">` +
+            `${this.normalPrice((tank.outGold) * 100)} <span class="ico whiteStar"></span>?`,
             buttons: [
                 {
                     title: 'Отменить',

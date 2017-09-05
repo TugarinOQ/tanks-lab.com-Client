@@ -81,12 +81,7 @@
       .buttons {
         position: relative;
         height: 40px;
-
-        .small-btn {
-          left: 50%;
-          position: absolute;
-          transform: translateX(-50%);
-        }
+        text-align: center;
       }
 
       .listImprovements {

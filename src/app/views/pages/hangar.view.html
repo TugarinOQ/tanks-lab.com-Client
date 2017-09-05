@@ -14,13 +14,22 @@
             </div>
 
             <div class="status green" *ngIf="researchedTank">
-                В процессе сборки...
+                В процессе сборки
+                <br>
+                <span class="ico goldColor">{{selectedTank.outGold}} <span class="ico gold"></span></span>
+                &nbsp;
+                <span class="ico silverColor">{{((selectedTank.outGold) * 100)}} <span class="ico whiteStar"></span></span>
             </div>
 
             <div class="buttons clearfix">
-                <div class="small-btn long action" [ngClass]="{ disabled: !researchedTank }" (click)="preSellTank(selectedTank)">
-                    <div class="text">Продать готовые танки за <span class="ico goldColor">{{normalPrice(selectedTank.outGold)}} <i class="ico gold"></i></span></div>
+
+                <div class="orange-btn" [ngClass]="{ disabled: !researchedTank }" (click)="preSellTank(selectedTank)">
+                    <div class="orange-btn-right">Продать</div>
                 </div>
+
+                <!--<div class="small-btn long action" [ngClass]="{ disabled: !researchedTank }" (click)="preSellTank(selectedTank)">-->
+                    <!--<div class="text">Продать готовые танки за <span class="ico goldColor">{{normalPrice(selectedTank.outGold)}} <i class="ico gold"></i></span></div>-->
+                <!--</div>-->
             </div>
 
             <div class="listImprovements">
