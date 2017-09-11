@@ -253,6 +253,7 @@
 
       &.active {
         border-image: url('../../../assets/imgs/hangar/carousel/activeBorder.png') 3 round;
+        -webkit-border-image: url('../../../assets/imgs/hangar/carousel/activeBorder.png') 3 round;
       }
 
       &:after {
