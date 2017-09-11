@@ -5,7 +5,13 @@ export const urls__config = {
     auth: '/users/login',
     reg: '/users/register',
     info: '/users/info',
-    balance: '/users/balance'
+    balance: '/users/balance',
+    activate: '/users/activate',
+    forgot: '/users/forgot',
+    changePassword: '/users/changePassword'
+  },
+  info: {
+    get: '/info/get'
   },
   token: {
     valid: '/token/valid'

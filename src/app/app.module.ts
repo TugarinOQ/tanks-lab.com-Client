@@ -16,6 +16,7 @@ import { regComponent } from './components/pages/reg.component';
 import { forgotComponent } from './components/pages/forgot.component';
 import { aboutComponent } from './components/pages/about.component';
 import { helpmeComponent } from './components/pages/helpme.component';
+import { termsComponent } from './components/pages/terms.component';
 import { gameComponent } from './components/pages/game.component';
 import { hangarComponent } from './components/pages/hangar.component';
 import { shopComponent } from './components/pages/shop.component';
@@ -34,6 +35,7 @@ import { checkboxComponent } from './components/checkbox.component';
     forgotComponent,
     aboutComponent,
     helpmeComponent,
+    termsComponent,
     gameComponent,
     hangarComponent,
     shopComponent,

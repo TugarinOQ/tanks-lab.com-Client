@@ -30,10 +30,24 @@ export const alertBox = {
     popup: {
         show: (props) => {
 
-            Object.assign(props, { props: {
+            Object.assign({ props: {
                 width: 400
-            } });
-            Object.assign(props.props, { classed: 'popup' });
+            } }, props);
+            Object.assign(props.props, { classed: 'popup', bg: 'black' });
+
+            alertBox.show(props);
+        },
+        hide: () => {
+
+            alertBox.hide();
+        }
+    },
+    popupNoCloseButton: {
+        show: (props) => {
+            Object.assign({ props: {
+                width: 400
+            } }, props);
+            Object.assign(props.props, { classed: 'popupNoCloseButton', bg: 'wot' });
 
             alertBox.show(props);
         },
@@ -57,7 +71,7 @@ export const alertBox = {
         const alert = d3
             .select('app-root');
 
-        alertBox._create({ view: alert, classed: _props.classed });
+        alertBox._create({ view: alert, classed: _props.classed, bg: _props.bg });
 
         d3
             .select('html')
@@ -142,11 +156,12 @@ export const alertBox = {
             cb();
         }
     },
-    _create: ({ view, classed = '' }) => {
+    _create: ({ view, classed = '', bg = '' }) => {
         if (view.select('#alert').empty()) {
             alertBox.alert = view
                 .append('div')
                 .attr('id', 'alert')
+                .classed(bg, true)
                 .append('div')
                 .classed('wrapper', true)
                 .append('div')

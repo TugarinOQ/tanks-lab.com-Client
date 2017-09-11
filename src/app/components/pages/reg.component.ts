@@ -27,7 +27,7 @@ export class regComponent {
 
       if (localStorage.getItem('token')) {
 
-          location.href = '/#/game/hangar';
+          this.router.navigateByUrl('/game/hangar');
       }
 
       this.titleService.setTitle( 'Регистрация' + config.genTitle() );

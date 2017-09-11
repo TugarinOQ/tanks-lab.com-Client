@@ -1,0 +1,44 @@
+.header {
+  background: url('../../../assets/imgs/header-back.jpg') no-repeat 50% 45%;
+  background-size: cover;
+  padding: 33px 0;
+  margin-bottom: 55px;
+  position: relative;
+  z-index: 5;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.2) 35%,rgba(0,0,0,.77) 100%);
+    content: "";
+    z-index: -1;
+  }
+}
+
+.header-inner_title {
+  font-size: 44px;
+  line-height: 46px;
+  font-weight: 700;
+  color: #f9f5e1;
+  margin-bottom: 25px;
+  word-wrap: break-word;
+}
+
+.content {
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    color: #f9f5e1;
+    margin: 0 0 14px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

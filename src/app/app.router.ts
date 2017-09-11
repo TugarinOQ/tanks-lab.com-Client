@@ -8,6 +8,7 @@ import { regComponent } from './components/pages/reg.component';
 import { forgotComponent } from './components/pages/forgot.component';
 import { aboutComponent } from './components/pages/about.component';
 import { helpmeComponent } from './components/pages/helpme.component';
+import { termsComponent } from './components/pages/terms.component';
 import { gameComponent } from './components/pages/game.component';
 
 export const appRoutes: Routes = [
@@ -34,6 +35,10 @@ export const appRoutes: Routes = [
   {
     path: 'helpme',
     component: helpmeComponent
+  },
+  {
+    path: 'terms',
+    component: termsComponent
   },
   {
     path: 'game',

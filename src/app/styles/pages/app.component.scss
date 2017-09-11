@@ -1,5 +1,7 @@
 @import './cursor.pages';
 
+
+
 .font {
   font-family: "Arial Narrow", Arial, sans-serif;
 }
@@ -354,7 +356,6 @@
   position: relative;
 
   .footer_bottom {
-    max-width: 1328px;
     margin: 0 16px;
     box-sizing: border-box;
     //border-top: 1px solid #2a2a2a;
@@ -389,6 +390,18 @@
           padding: 0 calc(1440px - 100% - 56px*2);
           text-align: center;
 
+          &.text-left, &.text-right {
+            text-align: left;
+          }
+          &.text-left {
+            float: left;
+            padding: 0 0 0 100px;
+          }
+          &.text-right {
+            float: right;
+            padding: 0 100px 0 0;
+          }
+
           a {
             color: #6b6b6b;
             transition: color .15s ease-out;
@@ -418,13 +431,36 @@
   background: url('../../../assets/imgs/bgBox.png') repeat;
   z-index: 1000;
 
+  &.black {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+  &.wot {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(27, 27, 19, 0.8);
+    }
+  }
+
   .wrapper {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 
-    .box:not(.popup) {
+    .box:not(.popup):not(.popupNoCloseButton) {
       position: relative;
 
       .body {
@@ -635,7 +671,43 @@
         margin: 0 0 0 30px;
       }
     }
+
+    .box.popupNoCloseButton {
+
+      .title {
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .red {
+        text-transform: uppercase;
+        color: red;
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        line-height: 50px;
+      }
+
+      .versionInfo {
+        float: left;
+      }
+    }
   }
+}
+
+.groupClass {
+  margin: 0 0 10px 0;
+
+  label:not(.label) {
+    text-align: left;
+    width: 140px;
+    display: inline-block;
+  }
+}
+
+.fl_l {
+  float: left !important;
 }
 
 .waiting {
@@ -720,6 +792,14 @@ hr.dotted {
     height: 12px;
     display: inline-block;
   }
+}
+
+.statusProject {
+  font-weight: bold;
+  color: red;
+  font-size: 25px;
+  margin: -10px 0 20px 0;
+  text-transform: uppercase;
 }
 
 .separator {

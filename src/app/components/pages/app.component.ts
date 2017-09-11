@@ -7,6 +7,8 @@ import { isNullOrUndefined } from 'util';
 import * as d3 from 'd3';
 import { config } from '../../configs/base.config';
 import { base } from '../../modules/base.module';
+import { urls__config } from '../../configs/urls.config';
+import { req } from '../../modules/request.module';
 
 @Component({
   selector: 'app-root',
@@ -72,10 +74,31 @@ export class AppComponent {
     if (args) {
 
       const referral = args.split('referral=')[1];
+      const mode = args.split('mode=')[1].split('&')[0];
 
       if (referral) {
 
           sessionStorage.setItem('referral', referral);
+      } else if (mode === 'activateUser') {
+
+          const userID = args.split('user=')[1].split('&')[0];
+          const code = args.split('code=')[1].split('&')[0];
+
+          req.post(this.http, {
+            url: urls__config.hostLocal + urls__config.users.activate,
+            body: {
+              user: userID,
+              code: code
+            },
+            err__cb: () => { },
+            success__cb: (res) => {
+
+              if (!res.error) {
+
+                  this.router.navigateByUrl('/auth');
+              }
+            }
+          });
       }
     }
   }
@@ -88,7 +111,7 @@ export class AppComponent {
           href === 'auth' || href === 'reg' || href === 'game' || href === 'forgot'
       );
       this.isCabinetPage = ( href === 'game' );
-      this.isStaticPage = ( href === 'about' || href === 'helpme' );
+      this.isStaticPage = ( href === 'about' || href === 'helpme' || href === 'terms' );
     }
   }
 

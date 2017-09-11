@@ -9,17 +9,17 @@
 
       <div class="left">
         <div class="ping middle"></div>
-        <div class="topBtn settings noSeperator">
+        <div class="topBtn settings noSeperator" (click)="openSettings()">
           <div class="hover"></div>
           <div class="icon"></div>
         </div>
-        <div class="topBtn user">
+        <div class="topBtn user" (click)="funcIsNotAvailable()">
           <div class="hover"></div>
           <div class="name">UserName</div>
         </div>
       </div>
       <div class="right">
-        <div class="topBtn bons">
+        <div class="topBtn bons" (click)="funcIsNotAvailable()">
           <div class="hover"></div>
           <div class="count">0</div>
           <div class="title">Заслужить</div>
@@ -34,7 +34,7 @@
           <div class="count">0</div>
           <div class="title">Пополнить</div>
         </div>
-        <div class="topBtn practice">
+        <div class="topBtn practice" (click)="funcIsNotAvailable()">
           <div class="hover"></div>
           <div class="count">0</div>
           <div class="title">Перевести</div>

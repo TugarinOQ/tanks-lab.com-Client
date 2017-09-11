@@ -188,7 +188,7 @@ export class researchComponent {
                 })
                 .append('div')
                 .classed('count', true)
-                .text(tank.info.pricePractice)
+                .text(this.normalPrice(tank.info.pricePractice))
                 .on('click', () => {
 
                     const countPracticeParent = this.getParentPractice({ tank: tank, nodes: this.grid.nodes }) || 0;
@@ -199,7 +199,7 @@ export class researchComponent {
                         return;
                     }
 
-                    this.checkMultiParents(tank, this)
+                    this.checkMultiParents(tank, this);
                 });
         }
 
@@ -240,7 +240,7 @@ export class researchComponent {
                 .append('div')
                 .classed('practice', true)
                 .classed('top', tank.info.inHangar)
-                .text(tank.info.inHangar ? tank.info.practice : tank.info.pricePractice);
+                .text(this.normalPrice(tank.info.inHangar ? tank.info.practice : tank.info.pricePractice));
         }
     }
 
@@ -429,9 +429,9 @@ export class researchComponent {
             title: 'Подтверждение исследования',
             html: `Исследовать ${tank.info.displayName} за ` +
             `<span class="ico silverColor">` +
-            `${tank.info.pricePractice} <span class="ico whiteStar"></span></span>` +
+            `${this.normalPrice(tank.info.pricePractice)} <span class="ico whiteStar"></span></span>` +
             ` (из них <span class="ico silverColor">` +
-            `${ tank.info.pricePractice - tank.info.practice } ` +
+            `${this.normalPrice( tank.info.pricePractice - tank.info.practice )} ` +
             `<span class="ico goldStar"></span></span>)?`,
             buttons: [
                 {

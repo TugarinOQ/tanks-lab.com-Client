@@ -59,7 +59,7 @@
     "no-unused-variable": false,
     "no-use-before-declare": true,
     "no-var-keyword": true,
-    "radix": true,
+    "radix": false,
     "switch-default": true,
     "triple-equals": [
       true,
@@ -72,7 +72,7 @@
     ],
     "max-line-length": [
       true,
-      100
+      200
     ],
     "no-require-imports": false,
     "no-trailing-whitespace": true,

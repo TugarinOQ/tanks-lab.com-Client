@@ -16,9 +16,9 @@
             <div class="status green" *ngIf="researchedTank">
                 В процессе сборки
                 <br>
-                <span class="ico goldColor">{{selectedTank.outGold}} <span class="ico gold"></span></span>
+                <span class="ico goldColor">{{normalPrice(selectedTank.outGold)}} <span class="ico gold"></span></span>
                 &nbsp;
-                <span class="ico silverColor">{{((selectedTank.outGold) * 100)}} <span class="ico whiteStar"></span></span>
+                <span class="ico silverColor">{{normalPrice(selectedTank.practice)}} <span class="ico whiteStar"></span></span>
             </div>
 
             <div class="buttons clearfix">
@@ -35,7 +35,7 @@
             <div class="listImprovements">
                 <div class="modules">
 
-                    <div class="cell" *ngFor="let module of tankImprovements">
+                    <div class="cell" *ngFor="let module of tankImprovements" (click)="funcIsNotAvailable()">
                         <div class="sel {{module}}">
                             <div class="level"></div>
                         </div>
@@ -48,21 +48,21 @@
                 </div>
                 <div class="equipment">
 
-                    <div class="cell equipmentAdd"></div>
-                    <div class="cell equipmentAdd"></div>
-                    <div class="cell equipmentAdd"></div>
+                    <div class="cell equipmentAdd" (click)="funcIsNotAvailable()"></div>
+                    <div class="cell equipmentAdd" (click)="funcIsNotAvailable()"></div>
+                    <div class="cell equipmentAdd" (click)="funcIsNotAvailable()"></div>
 
                 </div>
                 <div class="boosts">
 
-                    <div class="cell boostAdd"></div>
-                    <div class="cell boostAdd"></div>
-                    <div class="cell boostAdd"></div>
+                    <div class="cell boostAdd" (click)="funcIsNotAvailable()"></div>
+                    <div class="cell boostAdd" (click)="funcIsNotAvailable()"></div>
+                    <div class="cell boostAdd" (click)="funcIsNotAvailable()"></div>
 
                 </div>
                 <div class="instruction">
 
-                    <div class="cell instructionAdd"></div>
+                    <div class="cell instructionAdd" (click)="funcIsNotAvailable()"></div>
 
                 </div>
             </div>
@@ -71,39 +71,44 @@
 </div>
 
 <div class="carousel">
-    <ul>
-        <li class="item_carousel tank {{_tank.nation}}" (click)="selTank(_tank)" [ngClass]="{'active': _tank == selectedTank}" *ngFor="let _tank of tanks">
-            <div class="tankImage {{_tank.name}}_resized"></div>
-            <div class="levelInfo">
-                <div class="type {{_tank.type}}"></div>
-                <div class="level {{_tank.level}}"></div>
-            </div>
-            <div class="tankName">{{_tank.displayName}}</div>
-        </li>
+    <div class="control left"></div>
+    <div class="control right"></div>
 
-        <li class="item_carousel buyTank" *ngIf="showTank === true">
-            <a routerLink="/game/shop" class="redirectTo">
+    <div class="carousel_item">
+        <ul>
+            <li class="item_carousel tank {{_tank.nation}}" (click)="selTank(_tank)" [ngClass]="{'active': _tank == selectedTank}" *ngFor="let _tank of tanks">
+                <div class="tankImage {{_tank.name}}_resized"></div>
+                <div class="levelInfo">
+                    <div class="type {{_tank.type}}"></div>
+                    <div class="level {{_tank.level}}"></div>
+                </div>
+                <div class="tankName">{{_tank.displayName}}</div>
+            </li>
+
+            <li class="item_carousel buyTank" *ngIf="showTank === true">
+                <a routerLink="/game/shop" class="redirectTo">
+                    <div class="info">
+                        <div class="title">
+                            Купить танк
+                        </div>
+                        <div class="subtitle">
+                            Свободных мест: {{freeSeats}}
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="item_carousel buySeats" (click)="preBuySlot()" *ngIf="showTank === true">
                 <div class="info">
                     <div class="title">
-                        Купить танк
+                        Купить слот
                     </div>
-                    <div class="subtitle">
-                        Свободных мест: {{freeSeats}}
+                    <div class="price">
+                        <i class="silver">{{normalPrice(price.slot)}}</i>
                     </div>
                 </div>
-            </a>
-        </li>
-        <li class="item_carousel buySeats" (click)="preBuySlot()" *ngIf="showTank === true">
-            <div class="info">
-                <div class="title">
-                    Купить слот
-                </div>
-                <div class="price">
-                    <i class="silver">{{normalPrice(price.slot)}}</i>
-                </div>
-            </div>
-        </li>
+            </li>
 
-        <li class="item_carousel empty" *ngFor="let emptySeats of countScreenSeats"></li>
-    </ul>
+            <li class="item_carousel empty" *ngFor="let emptySeats of countScreenSeats"></li>
+        </ul>
+    </div>
 </div>

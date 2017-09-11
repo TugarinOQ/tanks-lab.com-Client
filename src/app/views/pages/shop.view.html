@@ -41,7 +41,7 @@
               </div>
               <div class="tankImage {{tank.name}}_resized"></div>
               <div class="tankName">{{fullnameOfTypeTank(tank.type)}} {{tank.displayName}}</div>
-              <div class="tankDesc">Доход от: <span class="ico goldColor">{{tank.sell}}</span><i class="ico gold"></i>/ мес</div>
+              <div class="tankDesc">Доход от: <span class="ico goldColor">{{normalPrice(tank.sell)}}</span><i class="ico gold"></i>/ мес</div>
               <div class="tankAmount" [ngClass]="{'availableSell': tank.availableSell}">{{normalPrice(tank.price)}}<i class="ico silver"></i></div>
             </div>
 

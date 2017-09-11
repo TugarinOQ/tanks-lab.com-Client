@@ -31,6 +31,7 @@
       <div class="promo-inner">
         <div class="promo-descr" [ngClass]="{'big': isAppView}">
           <a routerLink="/" class="logo" [ngClass]="{'big': isAppView}" tabindex="-1">Экономическая игра Tanks-Lab.com</a>
+          <div class="statusProject">Альфа-тест</div>
           <div class="promo_content" *ngIf="isHomePage">
             <p class="promo_info">Tanks-Lab.com - это увлекательный игровой симулятор с возможностью заработка и вывода реальных денег! Все что от Вас требуется это зарегистрироваться в нашем проекте, развивать свое танкостроение и получать стабильный доход!</p>
             <a routerLink="/reg" class="big-button">
@@ -47,15 +48,20 @@
   </div>
 
   <div class="footer" *ngIf="!isCabinetPage">
-    <div class="footer_bottom">
-      <div class="footer_bottom-wrapper">
+    <div class="footer_bottom container">
+      <div class="footer_bottom-wrapper row">
         <div class="footer_copyright">
-          <div class="footer_copyright-text">
+          <div class="footer_copyright-text text-left">
             © 2017 Tanks-Lab.com 18+
             &nbsp;|&nbsp;
             Payment by
-            <a href="https://megakassa.ru/" title="Платежный агрегатор МегаКасса" target="_blank">
+            <a href="https://megakassa.ru/ref/link/3619/" title="Платежный агрегатор МегаКасса" target="_blank">
               MegaKassa
+            </a>
+          </div>
+          <div class="footer_copyright-text text-right">
+            <a routerLink="/terms">
+              Пользовательское соглашение
             </a>
           </div>
         </div>

@@ -12,4 +12,26 @@
     width: 27px;
     height: 30px;
   }
+
+  &.mt {
+    background: url('../../assets/imgs/hangar/types/mt.png') no-repeat center center;
+    width: 17px;
+    height: 19px;
+  }
+  &.mt.big {
+    background: url('../../assets/imgs/hangar/types/big/mt.png') no-repeat center center;
+    width: 27px;
+    height: 30px;
+  }
+
+  &.ht {
+    background: url('../../assets/imgs/hangar/types/ht.png') no-repeat center center;
+    width: 17px;
+    height: 19px;
+  }
+  &.ht.big {
+    background: url('../../assets/imgs/hangar/types/big/ht.png') no-repeat center center;
+    width: 27px;
+    height: 30px;
+  }
 }

@@ -26,12 +26,12 @@ export class authComponent {
 
   constructor(private http: Http, private router: Router, private app: AppComponent, private titleService: Title) {
 
-    if (localStorage.getItem('token')) {
+      if (localStorage.getItem('token')) {
 
-      location.href = '/#/game/hangar';
-    }
+          this.router.navigateByUrl('/game/hangar');
+      }
 
-    this.titleService.setTitle( 'Авторизация' + config.genTitle() );
+      this.titleService.setTitle( 'Авторизация' + config.genTitle() );
   }
 
   agreeEvent(event) {

@@ -14,11 +14,12 @@ import { base } from  '../../modules/base.module';
 
 import * as d3 from 'd3';
 import { alertBox } from '../../modules/alert.module';
+import {exit} from "shelljs";
 
 @Component({
     selector: 'game',
     templateUrl: '../../views/pages/game.view.html',
-    styleUrls: [ '../../styles/pages/game.style.scss' ]
+    styleUrls: [ '../../styles/pages/game.style.scss', '../../styles/btns.style.scss' ]
 })
 
 export class gameComponent {
@@ -123,7 +124,7 @@ export class gameComponent {
 
       d3
           .select('.topBtn.user .name')
-          .text(this.normalPrice(this.user.username || 'UserName'));
+          .text(this.user.username || 'UserName');
 
       d3
           .select('.topBtn.bons .count')
@@ -142,9 +143,26 @@ export class gameComponent {
           .text(this.normalPrice(this.user.practice || 0));
   }
 
-  normalPrice(value) {
+  normalPrice(str) {
 
-      return value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,');
+      let parts = (str + '').split('.'),
+          main = parts[0],
+          len = main.length,
+          output = '',
+          i = len - 1;
+
+      while (i >= 0) {
+          output = main.charAt(i) + output;
+          if ((len - i) % 3 === 0 && i > 0) {
+              output = ',' + output;
+          }
+          --i;
+      }
+
+      if (parts.length > 1) {
+          output += '.' + parts[1];
+      }
+      return output;
   }
 
   getTime() {
@@ -527,14 +545,181 @@ export class gameComponent {
           },
           err__cb: (err) => {
 
-              return alertBox.show({ title: 'Ошибка', html: err.error });
+              if (err.error === 'manual') {
+
+                  this.getData();
+
+                  return alertBox.show({
+                      title: 'Вывод средств',
+                      html: `Вывод средств будет выполнен в ручном режиме, после проверки Администрацией проекта.`
+                  });
+              }
+
+              return alertBox.show({title: 'Ошибка', html: err.error});
           },
           success__cb: (res) => {
 
               alertBox.loading.hide();
 
-              return alertBox.show({ title: 'Вывод средств', html: 'Деньги успешно выведенны. В течении 5 минут они поступят на ваш кошелек!' });
+              this.getData();
+
+              alertBox.show({
+                  title: 'Вывод средств',
+                  html: 'Деньги успешно выведенны. В течении 5 минут они поступят на ваш кошелек!'
+              });
           }
       });
   }
+
+    funcIsNotAvailable() {
+
+        alertBox.show({
+            title: 'Функционал недоступен',
+            html: 'Данный функционал недоступен в АЛЬФА-ТЕСТЕ'
+        });
+    }
+
+    openSettings() {
+
+        alertBox.popupNoCloseButton.show({
+
+            title: 'Меню',
+            html: `
+            <div class="menu">
+                <div class="alfatest red">АЛЬФА-ТЕСТ</div>
+                
+                <div class="buttons">
+                    
+                    <div class="menuButton settings"><span class="text">Изменить пароль</span></div>
+                    <div class="menuButton logout"><span class="text">Выйти из учетной записи</span></div>
+                    <div class="menuButton exitInHangar"><span class="text">Вернуться в ангар</span></div>
+                    
+                </div>
+                
+                <div class="infoList">
+                    
+                    <div class="versionInfo">0.0.1 ~ alpha</div>
+                    
+                    <div (click)="openInfoList()" class="small-btn default">
+                        <span class="text">
+                            ChangeLog
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+            `,
+            buttons: [],
+            props: {
+                width: 295
+            },
+            cb: () => {
+
+                const self = this;
+
+                function exitInHangar() {
+
+                    d3.select('#alert .menuButton.exitInHangar').on('click', () => alertBox.popupNoCloseButton.hide());
+                }
+
+                function logout() {
+
+                    d3.select('#alert .menuButton.logout').on('click', () => {
+
+                        alertBox.popupNoCloseButton.hide();
+
+                        localStorage.removeItem('token');
+
+                        window.location.href = '/#/';
+                    });
+                }
+
+                function settings() {
+
+                    d3.select('#alert .menuButton.settings').on('click', () => {
+
+                        alertBox.popupNoCloseButton.hide();
+
+                        self.openBoxSettings();
+                    });
+                }
+
+                settings();
+                logout();
+                exitInHangar();
+            }
+        });
+    }
+
+    openBoxSettings() {
+        alertBox.show({
+            title: 'Изменение пароля',
+            html: '<div class="settings">' +
+            '<br>' +
+            '<div class="groupClass">' +
+            '<label for="old">Старый пароль:</label>' +
+            '<div class="input"><input id="old" type="password"></div>' +
+            '</div>' +
+            '<div class="groupClass">' +
+            '<label for="new">Новый пароль:</label>' +
+            '<div class="input"><input id="new" type="password"></div>' +
+            '</div>' +
+            '<div class="groupClass">' +
+            '<label for="confirm">Подтверждение:</label>' +
+            '<div class="input"><input id="confirm" type="password"></div>' +
+            '</div>' +
+            '</div>',
+            buttons: [
+                {
+                    title: 'Отменить',
+                    classed: 'default',
+                    on: () => alertBox.hide()
+                },
+                {
+                    title: 'Изменить',
+                    classed: 'action',
+                    on: () => this.changePassword()
+                }
+            ],
+            props: {
+                width: 360
+            }
+        });
+    }
+
+    changePassword() {
+
+      const oldPass = d3.select('#alert #old').node().value;
+      const newPass = d3.select('#alert #new').node().value;
+      const confirmPass = d3.select('#alert #confirm').node().value;
+
+      if (oldPass === '' || newPass === '' || confirmPass === '') {
+
+          return;
+      }
+
+      alertBox.popupNoCloseButton.hide();
+      alertBox.loading.show();
+
+      req.post(this.http, {
+          url: urls__config.hostLocal + urls__config.users.changePassword,
+          body: {
+              oldPass: oldPass,
+              newPass: newPass,
+              confirmPass: confirmPass
+          },
+          err__cb: (err) => {
+
+              alertBox.loading.hide();
+
+              return alertBox.show({title: 'Ошибка', html: err.error});
+          },
+          success__cb: (res) => {
+
+              alertBox.loading.hide();
+
+              return alertBox.show({title: 'Успех', html: 'Пароль изменен.'});
+          }
+      });
+    }
 }
