@@ -1,6 +1,6 @@
 export const urls__config = {
-  // hostLocal: 'https://api.tanks-lab.com',
-  hostLocal: 'http://localhost:8080',
+  hostLocal: 'https://api.tanks-lab.com',
+  // hostLocal: 'http://localhost:8080',
   users: {
     auth: '/users/login',
     reg: '/users/register',
