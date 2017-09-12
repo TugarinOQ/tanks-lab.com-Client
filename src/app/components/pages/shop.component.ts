@@ -74,9 +74,9 @@ export class shopComponent {
 
         this.titleService.setTitle( 'Магазин' + config.genTitle() );
 
-        this.getList();
-
         this.price = base.storage.get('price', true);
+
+        this.getList();
     }
 
     fullnameOfTypeTank(type) {

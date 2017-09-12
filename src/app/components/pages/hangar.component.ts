@@ -48,10 +48,10 @@ export class hangarComponent {
     constructor(private http: Http, private game: gameComponent, private titleService: Title) {
 
         this.titleService.setTitle('Ангар' + config.genTitle());
-
-        this.getTanksList();
         balance.http = this.http;
         this.price = base.storage.get('price', true);
+
+        this.getTanksList();
     }
 
     getTanksList(selTank = undefined) {
@@ -177,7 +177,7 @@ export class hangarComponent {
 
         alertBox.loading.show();
 
-        balance.check(this.price.slot, (res) => {
+        balance.check(this.price.slot || 30000, (res) => {
 
             alertBox.loading.hide();
 

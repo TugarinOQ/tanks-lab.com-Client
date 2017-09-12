@@ -77,7 +77,7 @@ export class authComponent {
 
           this.app.isLogged = true;
 
-          this.router.navigateByUrl('/game/hangar');
+          window.location.href = '/#/game/hangar';
         });
   }
 }
