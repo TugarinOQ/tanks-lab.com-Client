@@ -49,5 +49,9 @@ export const appRoutes: Routes = [
     path: 'game/:section',
     component: gameComponent,
     canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'payments',
+    redirectTo: 'game/hangar'
   }
 ];
