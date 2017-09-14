@@ -28,10 +28,12 @@ export class gameComponent {
   time = this.getTime();
   user = {
       username: undefined,
+      email: undefined,
       bons: undefined,
       gold: undefined,
       silver: undefined,
-      practice: undefined
+      practice: undefined,
+      referral: undefined
   };
   pay = {
       course: 100,
@@ -598,7 +600,7 @@ export class gameComponent {
                 
                 <div class="infoList">
                     
-                    <div class="versionInfo">0.0.1 ~ alpha</div>
+                    <div class="versionInfo">0.0.1.1 ~ alpha</div>
                     
                     <div (click)="openInfoList()" class="small-btn default">
                         <span class="text">
@@ -721,5 +723,40 @@ export class gameComponent {
               return alertBox.show({title: 'Успех', html: 'Пароль изменен.'});
           }
       });
+    }
+
+    openProfile() {
+
+        alertBox.show({
+            title: `${this.user.username} - Профиль конструктора (Альфа версия)`,
+            html: `
+            <div class="info">
+                <div class="group">
+                    <div class="name">Ник:</div>
+                    <div class="value">${this.user.username}</div>
+                </div>
+                <div class="group">
+                    <div class="name">E-Mail:</div>
+                    <div class="value">${this.user.email}</div>
+                </div>
+                <br>
+                <div class="groupClass">
+                    <div class="name">Реферальная ссылка (5% от каждого реферала):</div>
+                    <a class="value"><a href="${this.user.referral}">${this.user.referral}</a></div>
+                </div>
+            </div>
+            `,
+            buttons: [
+                {
+                    title: 'Закрыть',
+                    classed: 'default',
+                    on: () => alertBox.hide()
+                }
+            ],
+            props: {
+                width: 400
+            }
+        });
+
     }
 }
