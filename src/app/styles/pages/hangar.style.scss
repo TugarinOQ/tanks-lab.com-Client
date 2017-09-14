@@ -245,6 +245,7 @@
       height: 102px;
       border: 3px solid transparent;
       border-image: url('../../../assets/imgs/hangar/carousel/defaultBorder.png') 3 round;
+      -webkit-border-image: url('../../../assets/imgs/hangar/carousel/defaultBorder.png') 3 round;
       transition: all .3s;
 
       &.tank, &.buyTank, &.buySeats {
