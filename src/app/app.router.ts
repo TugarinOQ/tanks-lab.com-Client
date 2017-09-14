@@ -53,5 +53,9 @@ export const appRoutes: Routes = [
   {
     path: 'payments',
     redirectTo: 'game/hangar'
+  },
+  {
+    path: 'payments/*',
+    redirectTo: 'game/hangar'
   }
 ];
